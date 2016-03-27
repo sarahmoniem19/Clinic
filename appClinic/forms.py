@@ -1,0 +1,15 @@
+from django import forms
+from .models import lab
+from django.forms import ModelForm
+
+class nameForm(forms.Form):
+	yourName=forms.CharField(label="Your name",max_length=20)
+
+
+class LabForm(ModelForm):
+	class Meta:
+		model = lab
+		exclude = ('lab',)
+		fields = ['owner','name','logo','wtf','wtt','country','city','region',
+				'notes','phone','total_ranks','users_rated']
+

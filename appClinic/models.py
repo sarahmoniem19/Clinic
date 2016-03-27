@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+
 # Create your models here.
 
 
@@ -17,8 +18,8 @@ class myuser (models.Model):
 	region 	=models.CharField(max_length=50)
 	accType =models.CharField(max_length=1)
 
-# def __str__(self):
-#     return self.fname
+#def __str__(self):
+ #   return self.fname
 
 class clinic (models.Model):
 	owner	= models.ForeignKey(myuser, on_delete=models.CASCADE)
