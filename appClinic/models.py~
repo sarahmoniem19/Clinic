@@ -14,8 +14,8 @@ class myuser (models.Model):
 	region 	=models.CharField(max_length=50)
 	accType =models.CharField(max_length=1)
 
-class property (models.Model):
-	owner	= models.ForeignKey(myuser , on_delete=models.CASCADE)
+class propoerty(models.Model)
+	user	= models.ForeignKey(myuser , on_delete=models.CASCADE)
 	name    = models.CharField(max_length=50)
 	logo    = models.CharField(max_length=50, default='')
 	wtf   	= models.DateTimeField('working time from')
@@ -31,20 +31,20 @@ class property (models.Model):
         	abstract = True
 
 
-class clinic (property):
+class clinic (models.Model):
 	dname 	= models.CharField(max_length=50)  # Dr name
-	dQlfy 	= models.CharField(max_length=100) # Dr Qualification
-	cSpec 	= models.CharField(max_length=50)  # clinic specialization
-	price 	= models.IntegerField(default=0)   # clinic price 
+	name    = models.CharField(max_length=50 , default='')
+ 	dQlfy 	= models.CharField(max_length=100) # Dr Qualification
+	cSpec 	= models.CharField(max_length=50) # clinic specialization
+	price 	= models.IntegerField(default=0)  # clinic price 
 
-class lab (property):
-	pass
-class hospital (property):	
-	pass
+class lab (models.Model):
+	
+
 class labAnalysis (models.Model):
 	labId	= models.ForeignKey(lab , on_delete=models.CASCADE)
 	type 	= models.CharField(max_length=100)
 	price	= models.IntegerField(default=0)
 
-
+class hospital (models.Model):
 
