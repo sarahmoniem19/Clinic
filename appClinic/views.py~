@@ -1,12 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
 from .models import *
 from django.forms import ModelForm
+
 from .forms import *
-p=User
+
 # Create your views here.
 def getName(request):
 	#check if the request post so we need to process the form data
@@ -29,11 +28,9 @@ def getName(request):
 def index(request):
 	#return HttpResponse("Welcome to index")
 	if request.method=='POST':
-		val = request.POST
-		if request.POST['login']=='zzz':
-		    return HttpResponse("search")
-		else:
-			return render(request,'appClinic/loginpage.html')
+		return HttpResponse('loginpage')
+	elif request.method=='GET':
+		return HttpResponse('searchpage')
 	else:
 		return render(request,'appClinic/home.html')
 
@@ -47,9 +44,9 @@ def addlap(request):
 
 		if(labForm.is_valid):
 			#create an instanse of user and pass it to labform >>
-			#user=myuser()
+			user=myuser()
 
-			labForm.save()
+			labform.save()
 
 			return HttpResponseRedirect('/done/')
 
@@ -62,19 +59,3 @@ def addlap(request):
 def lapName(request):
 	#done added lap
 	return HttpResponse("Lap Name "+request.POST.get("name",""))
-
-def login(request):
-	if(request.method=='POST'):
-		p=User
-		form = request.POST
-		mail=form['email']
-		passwrd=form['password']
-		#return HttpResponse(passwrd)
-		try:
-			user = p.objects.all().get(email=mail,password=passwrd)
-			return HttpResponse("User is valid, active and authenticated")
-		except :
-			return HttpResponse("The username and password were incorrect.")
-			#return HttpResponse("User is valid, active and authenticated")
-	else:
-		return render(request,'appClinic/loginpage.html')
