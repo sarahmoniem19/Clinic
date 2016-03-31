@@ -2,14 +2,21 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
-p=User
 # Create your models here.
 
+class myuser (models.Model):
+	user = models.ForeignKey(User, unique=True)
+	dob  	=models.DateField('Date of birth ')
+	gender  =models.CharField(max_length=10)
+	country =models.CharField(max_length=50)
+	city 	=models.CharField(max_length=50)
+	region 	=models.CharField(max_length=50)
+	accType =models.CharField(max_length=1)
 #def __str__(self):
  #   return self.fname
 
 class clinic (models.Model):
-	owner	= models.ForeignKey(p, on_delete=models.CASCADE)
+	owner	= models.ForeignKey(User, on_delete=models.CASCADE)
 	dname 	= models.CharField(max_length=50)  # Dr name
 	name    = models.CharField(max_length=50 , default='')
 	logo    = models.CharField(max_length=50, default='')
@@ -30,7 +37,7 @@ class clinic (models.Model):
 #     return self.name
 
 class lab (models.Model):
-	owner	= models.ForeignKey(p , on_delete=models.CASCADE)
+	owner	= models.ForeignKey(User , on_delete=models.CASCADE)
 	name    = models.CharField(max_length=50)
 	logo    = models.CharField(max_length=50)
 	wtf   	= models.DateTimeField('working time from')
@@ -55,7 +62,7 @@ class labAnalysis (models.Model):
 #     return self.type
 
 class hospital (models.Model):
-	owner	= models.ForeignKey(p , on_delete=models.CASCADE)
+	owner	= models.ForeignKey(User , on_delete=models.CASCADE)
 	name    = models.CharField(max_length=50)
 	logo    = models.CharField(max_length=50)
 	wtf   	= models.DateTimeField('working time from')

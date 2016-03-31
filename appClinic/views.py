@@ -55,8 +55,7 @@ def addlap(request):
 
 	else:
 		labForm = LabForm()
-
-	return render(request,'appClinic/addLap.html',{'form':labForm})
+		return render(request,'appClinic/addLap.html',{'form':labForm})
 
 
 def lapName(request):
@@ -67,14 +66,40 @@ def login(request):
 	if(request.method=='POST'):
 		p=User
 		form = request.POST
-		mail=form['email']
+		usern=form['username']
 		passwrd=form['password']
-		#return HttpResponse(passwrd)
-		try:
-			user = p.objects.all().get(email=mail,password=passwrd)
+		user = authenticate(username=usern , password=passwrd)
+		if user is not None:
+			# the password verified for the user
 			return HttpResponse("User is valid, active and authenticated")
-		except :
+			##after redirect to page get user object by (request.user)
+		else:
+			# the authentication system was unable to verify the username and password
 			return HttpResponse("The username and password were incorrect.")
-			#return HttpResponse("User is valid, active and authenticated")
+
 	else:
 		return render(request,'appClinic/loginpage.html')
+
+def register(request):
+	if(request.method=='POST'):
+		p=User()
+		form=request.POST
+		p.first_name=form['first_name']
+		p.last_name=form['last_name']
+		p.username=form['username']
+		p.email=form['email']
+		p.set_password(form['password'])
+		p.save()
+		p2=myuser()
+		p2.user_id = User.objects.get_by_natural_key(form['username']).id
+		p2.dob = form['dob']
+		p2.city = form['city']
+		p2.country = form['country']
+		p2.region = form['region']
+		p2.gender = form['gender']
+		p2.accType = form['accType']
+		p2.save()
+		return  HttpResponse("succeded")
+	else:
+		reg = registerForm()
+		return render(request,'appClinic/register.html',{'form':reg.as_ul})

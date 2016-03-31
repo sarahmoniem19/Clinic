@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'^your-name/$',views.yourName,name="your name"),
     url(r'^addLap/$',views.addlap,name="addlap"),
     url(r'^lapName/$',views.lapName,name="lapName"),
-    url(r'^login/$',views.login,name="login")
+    url(r'^login/$',views.login,name="login"),
+    url(r'^register/$',views.register,name="register")
 ]
