@@ -12,7 +12,7 @@ class LabForm(ModelForm):
 		model = lab
 		exclude = ('lab',)
 		fields = ['owner','name','logo','wtf','wtt','country','city','region',
-				'notes','phone','total_ranks','users_rated']
+				'notes','phone']
 
 class registerForm(ModelForm):
 	class Meta:

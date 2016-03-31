@@ -1,8 +1,11 @@
 from __future__ import unicode_literals
 
 from django.db import models
+<<<<<<< HEAD
 from django.contrib.auth.models import User
 # Create your models here.
+=======
+>>>>>>> 74faabc6237af03b31aac0e527ac84a74f5b2f07
 
 class myuser (models.Model):
 	user = models.ForeignKey(User, unique=True)
@@ -12,6 +15,7 @@ class myuser (models.Model):
 	city 	=models.CharField(max_length=50)
 	region 	=models.CharField(max_length=50)
 	accType =models.CharField(max_length=1)
+<<<<<<< HEAD
 #def __str__(self):
  #   return self.fname
 
@@ -38,8 +42,13 @@ class clinic (models.Model):
 
 class lab (models.Model):
 	owner	= models.ForeignKey(User , on_delete=models.CASCADE)
+=======
+
+class property (models.Model):
+	owner	= models.ForeignKey(myuser , on_delete=models.CASCADE)
+>>>>>>> 74faabc6237af03b31aac0e527ac84a74f5b2f07
 	name    = models.CharField(max_length=50)
-	logo    = models.CharField(max_length=50)
+	logo    = models.CharField(max_length=50, default='')
 	wtf   	= models.DateTimeField('working time from')
 	wtt   	= models.DateTimeField('workign time to')
 	country = models.CharField(max_length=50)
@@ -49,18 +58,27 @@ class lab (models.Model):
 	phone	= models.CharField(max_length=50)
 	total_ranks=models.IntegerField(default=0)
 	users_rated=models.IntegerField(default=0)
+	class Meta:
+        	abstract = True
 
-# def __str__(self):
-#     return self.name
 
+class clinic (property):
+	dname 	= models.CharField(max_length=50)  # Dr name
+	dQlfy 	= models.CharField(max_length=100) # Dr Qualification
+	cSpec 	= models.CharField(max_length=50)  # clinic specialization
+	price 	= models.IntegerField(default=0)   # clinic price 
+
+class lab (property):
+	pass
+class hospital (property):	
+	pass
 class labAnalysis (models.Model):
 	labId	= models.ForeignKey(lab , on_delete=models.CASCADE)
 	type 	= models.CharField(max_length=100)
 	price	= models.IntegerField(default=0)
 
-# def __str__(self):
-#     return self.type
 
+<<<<<<< HEAD
 class hospital (models.Model):
 	owner	= models.ForeignKey(User , on_delete=models.CASCADE)
 	name    = models.CharField(max_length=50)
@@ -77,3 +95,6 @@ class hospital (models.Model):
  
 # def __str__(self):
 #     return self.name
+=======
+
+>>>>>>> 74faabc6237af03b31aac0e527ac84a74f5b2f07
