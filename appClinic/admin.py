@@ -4,7 +4,7 @@ from .models import *
 
 # Register your models here.
 
-admin.site.register(myuser)
+
 admin.site.register(clinic)
 # admin.site.register(lab)
 # admin.site.register(labAnalysis)

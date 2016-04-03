@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+</head>
+<body>
+<form method="post" action="/appClinic/register/">
+    {%	csrf_token %}
+    {{form}}
+    <input type="submit" value="submit"/>
+</form>
+</body>
+</html>

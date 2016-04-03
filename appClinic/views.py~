@@ -5,33 +5,24 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from .models import *
 from django.forms import ModelForm
-<<<<<<< HEAD
-from appClinic.models import myuser 
-from appClinic.models import lab
-from .forms import LabForm
-
-=======
 from .forms import *
 p=User
->>>>>>> 6d39647095ba11331c4edb7ba22bee7fd2c4c4ab
 # Create your views here.
 def getName(request):
 	#check if the request post so we need to process the form data
 	if request.method=='POST':
 		#create the form instance and populate it with data from the request
 		form=nameForm(request.POST)
-		form.save()
 		#check if it's valid
 		if form.is_valid():
 			#process the data in form.cleand_data
-			#redirect to a new URL
 
+			#redirect to a new URL
 			return HttpResponseRedirect('/done/')
 
 	#if any other method we will create blank form
 	else:
 		form=nameForm()
-	
 
 	return render(request,'appClinic/name.html',{'form':form})
 
@@ -47,15 +38,11 @@ def index(request):
 		return render(request,'appClinic/home.html')
 
 def yourName(request):
-
 	return HttpResponse("your name is "+request.POST.get("yourName", ""))
 
 
 def addlap(request):
 	if(request.method=='POST'):
-<<<<<<< HEAD
-		labForm = LabForm(request.POST)	
-=======
 		labForm = LabForm(request.POST)
 
 		if(labForm.is_valid):
@@ -66,45 +53,13 @@ def addlap(request):
 
 			return HttpResponseRedirect('/done/')
 
->>>>>>> 6d39647095ba11331c4edb7ba22bee7fd2c4c4ab
 	else:
 		labForm = LabForm()
 		return render(request,'appClinic/addLap.html',{'form':labForm})
 
 
 def lapName(request):
- #I'm the a8baaaa wa7d f el doniaaaaa 
-
- #Stupid ...........................Stupid
-
 	#done added lap
-<<<<<<< HEAD
-	if(request.method=='POST'):
-
-			labForm = LabForm(request.POST)
-			if labForm.is_valid():
-				wtt=request.POST.get('wtt','')
-				wtt=wtt.replace('+',' ')
-
-				wtf=request.POST.get('wtf','')
-				wtf=wtf.replace('+',' ')
-
-				lab=labForm.save(commit=False)
-				user=myuser.objects.get(pk=2)
-				
-				lab.wtf=wtf
-				lab.wtt=wtt
-				lab.owner=user
-				
-				lab.save()
-			else:
-				return HttpResponseRedirect('/appClinic/invalidForm.html')
-
-	return HttpResponse("Lap Name "+request.POST.get("name",""))
-def invalidForm(request):
-
-	return HttpResponse("Invalid Form >>> ")
-=======
 	return HttpResponse("Lap Name "+request.POST.get("name",""))
 
 def login(request):
@@ -117,7 +72,6 @@ def login(request):
 		if user is not None:
 			# the password verified for the user
 			return HttpResponse("User is valid, active and authenticated")
-			##after redirect to page get user object by (request.user)
 		else:
 			# the authentication system was unable to verify the username and password
 			return HttpResponse("The username and password were incorrect.")
@@ -148,4 +102,3 @@ def register(request):
 	else:
 		reg = registerForm()
 		return render(request,'appClinic/register.html',{'form':reg.as_ul})
->>>>>>> 6d39647095ba11331c4edb7ba22bee7fd2c4c4ab

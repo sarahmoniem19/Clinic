@@ -1,0 +1,11 @@
+<html>
+	<body>
+		<form method="post" action="/appClinic/">
+		<input type="submit" value="login">
+		</form>
+		<form method="get" action="/appClinic/" >
+		<input type="text" name="search"/>
+		<input type="submit" value="go" >
+		</form>
+	<body>
+<html>
