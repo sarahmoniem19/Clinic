@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django import forms
+
 
 class myuser (models.Model):
 	fname	=models.CharField(max_length=50)
@@ -13,6 +15,9 @@ class myuser (models.Model):
 	city 	=models.CharField(max_length=50)
 	region 	=models.CharField(max_length=50)
 	accType =models.CharField(max_length=1)
+
+	def __str__(self):
+		return self.fname
 
 class property (models.Model):
 	owner	= models.ForeignKey(myuser , on_delete=models.CASCADE)
