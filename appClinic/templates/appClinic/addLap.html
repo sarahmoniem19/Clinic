@@ -1,7 +1,31 @@
+
+{% extends 'appClinic/base.html' %}
+{% block content %}
+<h2>Add Lap </h2>
+
 <form action="/appClinic/lapName/" method="post">
 {%	csrf_token %}
-{{form}}
 
-<input type="submit" value="submit"/>
 
+{% load bootstrap %}
+
+{{ form|bootstrap }}
+<input type="submit" value="Add Lap" class="btn-primary"/>
+
+
+<!-- <table>
+
+{% for field in form %}
+<tr>
+<td>{{ field.label_tag }} {{field}}</td>
+</tr>
+{% endfor %}
+
+
+<tr>
+<td><input type="submit" value="Add Lap"/></td>
+</tr>
+</table> -->
 </form>
+
+{% endblock %}

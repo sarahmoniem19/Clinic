@@ -16,7 +16,8 @@ class nameForm(forms.Form):
 class LabForm(ModelForm):
 	class Meta:
 		model = lab
-		fields = ['owner','name','logo','wtf','wtt','country','city','region','notes','phone']
+
+		fields = ['name','logo','wtf','wtt','country','city','region','notes','phone']
 		error_messages={
 		NON_FIELD_ERRORS:{
 			'unique_together': "%(model_name)s's %(field_labels)s are not unique.",
