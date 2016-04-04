@@ -5,15 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from .models import *
 from django.forms import ModelForm
-<<<<<<< HEAD
-from appClinic.models import myuser 
-from appClinic.models import lab
-from .forms import LabForm
-
-=======
 from .forms import *
-p=User
->>>>>>> 6d39647095ba11331c4edb7ba22bee7fd2c4c4ab
+
 # Create your views here.
 def getName(request):
 	#check if the request post so we need to process the form data
@@ -35,16 +28,16 @@ def getName(request):
 
 	return render(request,'appClinic/name.html',{'form':form})
 
-def index(request):
-	#return HttpResponse("Welcome to index")
-	if request.method=='POST':
-		val = request.POST
-		if request.POST['login']=='zzz':
-		    return HttpResponse("search")
-		else:
-			return render(request,'appClinic/loginpage.html')
-	else:
-		return render(request,'appClinic/home.html')
+#def index(request):
+#	#return HttpResponse("Welcome to index")
+#	if request.method=='POST':
+#        val = request.POST
+#		if request.POST['login']=='zzz' :
+#            return HttpResponse("search")
+#        else:
+#			return render(request,'appClinic/loginpage.html')
+#    else:
+#        return render(request,'appClinic/home.html')
 
 def yourName(request):
 
@@ -53,9 +46,6 @@ def yourName(request):
 
 def addlap(request):
 	if(request.method=='POST'):
-<<<<<<< HEAD
-		labForm = LabForm(request.POST)	
-=======
 		labForm = LabForm(request.POST)
 
 		if(labForm.is_valid):
@@ -66,7 +56,6 @@ def addlap(request):
 
 			return HttpResponseRedirect('/done/')
 
->>>>>>> 6d39647095ba11331c4edb7ba22bee7fd2c4c4ab
 	else:
 		labForm = LabForm()
 		return render(request,'appClinic/addLap.html',{'form':labForm})
@@ -78,7 +67,6 @@ def lapName(request):
  #Stupid ...........................Stupid
 
 	#done added lap
-<<<<<<< HEAD
 	if(request.method=='POST'):
 
 			labForm = LabForm(request.POST)
@@ -101,11 +89,9 @@ def lapName(request):
 				return HttpResponseRedirect('/appClinic/invalidForm.html')
 
 	return HttpResponse("Lap Name "+request.POST.get("name",""))
-def invalidForm(request):
 
+def invalidForm(request):
 	return HttpResponse("Invalid Form >>> ")
-=======
-	return HttpResponse("Lap Name "+request.POST.get("name",""))
 
 def login(request):
 	if(request.method=='POST'):
@@ -148,4 +134,62 @@ def register(request):
 	else:
 		reg = registerForm()
 		return render(request,'appClinic/register.html',{'form':reg.as_ul})
->>>>>>> 6d39647095ba11331c4edb7ba22bee7fd2c4c4ab
+    
+def search (request):
+    if 'data' in request.GET:
+        value = request.GET['data']
+        query_clinic = clinic.objects.filter (name__icontains =  value) 
+        query_lab = lab.objects.filter (name__icontains = value)
+        query_hospital = hospital.objects.filter (name__icontains = value)
+        return render(request,'appClinic/search.html',{'query_clinic':query_clinic ,'query_lab':query_lab,'query_hospital':query_hospital})
+    else:
+        return render (request, 'appClinic/search_simple.html')	 		 	 	
+
+    
+	
+
+def search_simple(request):
+	return render (request,'appClinic/search_simple.html')
+	
+def result(request):
+	if 'type' in request.GET:	
+		search = request.GET['type']
+		if search == "Clinics":
+			if 'location' in request.GET:
+				loc = request.GET['location']
+			if 'spec' in request.GET:
+				spec = request.GET['spec']
+			if 'price' in request.GET:
+				cost = request.GET['price']
+				if cost == '2':
+					#results = clinic.objects.get ( Q(cost__lt = 300) & Q(cost__gte = 100) & Q(city__icontains = loc) & Q(cSpec__icontains = spec) ) 
+					results = clinic.objects.filter (price__range=(100, 300) , city__icontains = loc , cSpec__icontains = spec) 
+					return render (request, 'appClinic/result.html' , {'results':results , "type": clinic})
+				elif cost == '1':	
+					results = clinic.objects.all().filter (city__icontains = loc , cSpec__icontains = spec , price__lte = 100)
+					return render (request, 'appClinic/result.html' , {'results':results})
+				elif cost == '3':	
+					#results = clinic.objects.filter (city__icontains = loc , cSpec__icontains = spec , cost__lte = 500 , cost__gte = 300)
+					results = clinic.objects.filter (price__range=(300, 500) , city__icontains = loc , cSpec__icontains = spec) 
+					return render (request, 'appClinic/result.html' , {'results':results , "type": clinic})	
+				elif cost == '4':	
+					results = clinic.objects.filter (city__icontains = loc , cSpec__icontains = spec , price__gt = 500)
+					return render (request, 'appClinic/result.html' , {'results':results , "type": clinic})
+		elif search == "Hospitals":
+			if 'location' in request.GET:
+				loc = request.GET['location']
+			if 'level' in request.GET:
+				le = request.GET['level']
+				results = hospital.objects.filter (city__icontains = loc , level__icontains = le)
+				return render (request, 'appClinic/result.html' , {'request':request , "type": hospital})	 	
+		elif search == "Labs":	
+			if 'location' in request.GET:
+				loc = request.GET['location']
+			if 'level' in request.GET:
+				le = request.GET['level']
+			if 'lab_analysis' in request.GET:
+				le = request.GET['lab_analysis']	
+				results = lab.objects.filter (city__icontains = loc , level__icontains = le , type__icontains = lab_analysis)
+				return render (request, 'appClinic/result.html' , {'request':request , "type": lab})	 		 	 	
+		
+

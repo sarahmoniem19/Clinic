@@ -18,7 +18,6 @@ class LabForm(ModelForm):
 	class Meta:
 		model = lab
 
-<<<<<<< HEAD
 		fields = ['name','logo','wtf','wtt','country','city','region','notes','phone']
 		error_messages={
 		NON_FIELD_ERRORS:{
@@ -35,7 +34,6 @@ class LabForm(ModelForm):
 		
 		
 		
-=======
 class registerForm(ModelForm):
 	class Meta:
 		model = User
@@ -48,4 +46,3 @@ class registerForm(ModelForm):
 	accType =forms.CharField(label="Account type",max_length=1)
 
 
->>>>>>> 6d39647095ba11331c4edb7ba22bee7fd2c4c4ab
