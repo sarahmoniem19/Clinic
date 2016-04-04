@@ -28,16 +28,8 @@ def getName(request):
 
 	return render(request,'appClinic/name.html',{'form':form})
 
-#def index(request):
-#	#return HttpResponse("Welcome to index")
-#	if request.method=='POST':
-#        val = request.POST
-#		if request.POST['login']=='zzz' :
-#            return HttpResponse("search")
-#        else:
-#			return render(request,'appClinic/loginpage.html')
-#    else:
-#        return render(request,'appClinic/home.html')
+def index(request):
+        return render(request,'appClinic/index.html')
 
 def yourName(request):
 

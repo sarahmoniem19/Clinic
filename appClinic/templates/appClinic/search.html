@@ -1,176 +1,147 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <script type="text/javascript" src="jquery-2.0.0.min.js"> </script>
-</head>
+{% extends 'appClinic/base.html' %} {% block content %}
 
-<body>  
-<form action="/appClinic/result/" method="get">
+<h3 class="text-info text-center"> advanced Search </h3>
 
-<h3> advanced Search </h3>
-<div id="type">
-  <p>Type</p> 
-  <select name="type" >
-    <option value="Clinics" name="Clinics">Clinics</option>
-    <option value="Labs" name="Labs" >Labs</option>
-    <option value="Hospitals" name="Hospitals" >Hospitals</option>
-  </select> 
+<div class="col-sm-3">
+    <form action="{% url 'app:result' %}" method="get" class="form-horizontal">
+
+        <div id="type">
+            <p>Type</p>
+            <select name="type" class="form-control">
+                <option value="Clinics" name="Clinics">Clinics</option>
+                <option value="Labs" name="Labs">Labs</option>
+                <option value="Hospitals" name="Hospitals">Hospitals</option>
+            </select>
+        </div>
+
+        <div id="location">
+            <p> Location </p>
+            <select name="location" class="form-control">
+                <option value="Cairo" name="Cairo">cairo</option>
+                <option value="Alex" name="Alex">alex</option>
+                <option value="Giza" name="Giza">giza</option>
+                <option value="mansoura" name="mansoura">mansoura</option>
+            </select>
+        </div>
+
+        <div id="spec">
+            <p>Specification </p>
+            <select name="spec" class="form-control">
+                <option value="Pediatrics" name="Pediatrics">Pediatrics</option>
+                <option value="Ophthalmology" name="Ophthalmology">Ophthalmology</option>
+                <option value="Dermatology" name="Dermatology">Dermatology</option>
+                <option value="Urology" name="Urology">Urology</option>
+                <option value="cardiology" name="cardiology">cardiology</option>
+                <option value="orthopaedic" name="orthopaedic">orthopaedic</option>
+                <option value="internal-medicine" name="internal-medicine">internal-medicine</option>
+                <option value="gynacology" name="gynacology">gynacology</option>
+                <option value="dentist" name="dentist">dentist</option>
+                <option value="hepatology" name="hepatology">hepatology</option>
+                <option value="Plastic Surgery" name="Plastic Surgery">Plastic Surgery</option>
+                <option value="Surgery" name="Surgery">Surgery</option>
+            </select>
+        </div>
+
+        <div id="price">
+            <p> Price </p>
+            <select name="price" class="form-control">
+                <option value="1" name="less than 100">less than 100</option>
+                <option value="2" name="100 - 300">100 - 300</option>
+                <option value="3" name="300 - 500">300 - 500</option>
+                <option value="4" name="more than 500">more than 500</option>
+            </select>
+        </div>
+
+        <div id="level">
+            <p> Level </p>
+            <select name="level" class="form-control">
+                <option value="1" name="A">A</option>
+                <option value="2" name="B">B</option>
+                <option value="3" name="C">C</option>
+            </select>
+        </div>
+
+        <div id="lab_analysis" style="margin:10 auto">
+            <p> Lab Analysis </p>
+            <select name="lab_analysis" class="form-control">
+                <option value="1" name="test1">test1</option>
+                <option value="2" name="test2">test2</option>
+                <option value="3" name="test3">test3</option>
+            </select>
+        </div>
+        <button class="btn btn-info"> Search</button>
+
+    </form>
+
 </div>
-
-<div id="location">
-  <p> Location </p> 
-  <select name="location">
-    <option value="Cairo" name="Cairo" >cairo</option>
-    <option value="Alex" name="Alex">alex</option>
-    <option value="Giza" name="Giza" >giza</option>
-    <option value="mansoura" name="mansoura" >mansoura</option>
-  </select> 
-</div>
-
-<div id="spec">
-  <p>Specification </p> 
-  <select name="spec">
-    <option value="Pediatrics" name="Pediatrics" >Pediatrics</option>
-    <option value="Ophthalmology" name="Ophthalmology">Ophthalmology</option>
-    <option value="Dermatology" name="Dermatology" >Dermatology</option>
-    <option value="Urology" name="Urology" >Urology</option>
-    <option value="cardiology" name="cardiology" >cardiology</option>
-    <option value="orthopaedic" name="orthopaedic" >orthopaedic</option>	
-    <option value="internal-medicine" name="internal-medicine" >internal-medicine</option>
-    <option value="gynacology" name="gynacology" >gynacology</option>
-    <option value="dentist" name="dentist" >dentist</option>
-    <option value="hepatology" name="hepatology" >hepatology</option>
-    <option value="Plastic Surgery" name="Plastic Surgery" >Plastic Surgery</option>
-    <option value="Surgery" name="Surgery" >Surgery</option>
-  </select>
-</div>   
-
-<div id="price">
-  <p> Price </p> 
-  <select name="price">
-    <option value="1" name="less than 100" >less than 100</option>
-    <option value="2" name="100 - 300">100 - 300</option>
-    <option value="3" name="300 - 500" >300 - 500</option>
-    <option value="4" name="more than 500" >more than 500</option>
-  </select> 
-</div>
-
-<div id="level">
-  <p> Level </p> 
-  <select name="level">
-    <option value="1" name="A" >A</option>
-    <option value="2" name="B">B</option>
-    <option value="3" name="C" >C</option>
-  </select> 
-</div>
-
-<div id="lab_analysis">
-  <p> Lab Analysis </p> 
-  <select name="lab_analysis">
-    <option value="1" name="test1" >test1</option>
-    <option value="2" name="test2">test2</option>
-    <option value="3" name="test3" >test3</option>
-  </select> 
-</div>
-
-<input type="submit" value="search">
-</form>
-
-
-{% if not query_clinic and query_lab and query_hosptail%}
+    {% if not query_clinic and query_lab and query_hosptail%}
 <p> NO DATA </p>
-{% endif %}
+{% endif %} {% for query in query_clinic %} {%if forloop.first%}
+<table class="table table-striped">
+    <tr>
+        <td> <a href="/?name=clinic/?id={{query.id}}/">{{query.name}}</a></td>
+    </tr>
+    {% else %} {%if forloop.last%}
+    <tr>
+        <td> <a href="/?name=clinic/?id={{query.id}}/">{{query.name}}</a></td>
+    </tr>
+</table>
+{%else%}
+<tr>
+    <td> <a href="/?name=clinic/?id={{query.id}}/">{{query.name}}</a></td>
+</tr>
 
-{% for query in query_clinic %}
-    {%if forloop.first%}
-      <table>
-        <tr>
-            <td> <a href="/?name=clinic/?id={{query.id}}/" >{{query.name}}</a></td>
-        </tr>
-    {% else %}
-    {%if forloop.last%}
-        <tr>
-            <td> <a href="/?name=clinic/?id={{query.id}}/" >{{query.name}}</a></td>
-        </tr>
-      </table>
-    {%else%}
-      <tr>
-            <td> <a href="/?name=clinic/?id={{query.id}}/" >{{query.name}}</a></td>
-      </tr>
+{%endif%} {%endif%} {% empty %}
+<p>sorry no Clinics with this name</p>
+{%endfor%} {% for query in query_lab %} {%if forloop.first%}
+<table class="table">
+    <tr>
+        <td> <a href="/?name=lab/?id={{query.id}}/">{{query.name}}</a></td>
+    </tr>
+    {% else %} {%if forloop.last%}
+    <tr>
+        <td> <a href="/?name=lab/?id={{query.id}}/">{{query.name}}</a></td>
+    </tr>
+</table>
+{%else%}
+<tr>
+    <td> <a href="/?name=lab/?id={{query.id}}/">{{query.name}}</a></td>
+</tr>
 
-    {%endif%}
-    {%endif%}
+{%endif%} {%endif%} {%endfor%} {% for query in query_hosptail %} {%if forloop.first%}
+<table class="table">
+    <tr>
+        <td> <a href="/?name=hosptail/?id={{query.id}}/">{{query.name}}</a></td>
 
-    {% empty %}
-      <p>sorry no Clinics with this name</p>
-{%endfor%}
+    </tr>
+    {% else %} {%if forloop.last%}
+    <tr>
+        <td> <a href="/?name=hosptail/?id={{query.id}}/">{{query.name}}</a></td>
 
+    </tr>
+</table>
+{%else%}
+<tr>
+    <td> <a href="/?name=hosptail/?id={{query.id}}/">{{query.name}}</a></td>
 
-{% for query in query_lab %}
-    {%if forloop.first%}
-      <table>
-        <tr>
-            <td> <a href="/?name=lab/?id={{query.id}}/" >{{query.name}}</a></td>
-        </tr>
-    {% else %}
-    {%if forloop.last%}
-        <tr>
-            <td> <a href="/?name=lab/?id={{query.id}}/" >{{query.name}}</a></td>
-        </tr>
-      </table>
-    {%else%}
-      <tr>
-            <td> <a href="/?name=lab/?id={{query.id}}/" >{{query.name}}</a></td>
-      </tr>
-
-    {%endif%}
-    {%endif%}
-
-{%endfor%}
+</tr>
 
 
 
-{% for query in query_hosptail %}
-    {%if forloop.first%}
-      <table>
-        <tr>
-            <td> <a href="/?name=hosptail/?id={{query.id}}/" >{{query.name}}</a></td>
 
-        </tr>
-    {% else %}
-    {%if forloop.last%}
-        <tr>
-            <td> <a href="/?name=hosptail/?id={{query.id}}/" >{{query.name}}</a></td>
-
-        </tr>
-      </table>
-    {%else%}
-      <tr>
-            <td> <a href="/?name=hosptail/?id={{query.id}}/" >{{query.name}}</a></td>
-
-      </tr>
-
-    {%endif%}
-    {%endif%}
-
-  {%endfor%}
+{%endif%} {%endif%} {%endfor%}
 <script>
-$(document).ready(function(){
-   //var x = $("#type select option").value;
-   console.log("xx");
-});
- 
+    $(document).ready(function() {
+        //var x = $("#type select option").value;
+        console.log("xx");
+    });
 
 
-/*if(x=='Clinics'){
-  $("#type").hide();
-}*/
 
-
+    /*if(x=='Clinics'){
+      $("#type").hide();
+    }*/
 </script>
 
 
-
-</body>
- </html>
-  
+{% endblock %}
