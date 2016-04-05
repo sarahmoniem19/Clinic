@@ -37,7 +37,7 @@ def yourName(request):
 
 
 
-def addlap(request):
+def addlab(request):
 	if(request.method=='POST'):
 
 		labForm = LabForm(request.POST)
@@ -82,90 +82,90 @@ def lapName(request):
 
 	return HttpResponse("Lap Name "+request.POST.get("name",""))
 
-def addlap(request):
+def addHos(request):
 	if(request.method=='POST'):
 
-		labForm = LabForm(request.POST)
+		hosForm = HosForm(request.POST)
 
-		if(labForm.is_valid):
+		if(hosForm.is_valid):
 			#create an instanse of user and pass it to labform >>
 			#user=myuser()
 
-			labForm.save()
+			hosForm.save()
 
 			return HttpResponseRedirect('/done/')
 
 	else:
-		labForm = LabForm()
-		return render(request,'appClinic/addLap.html',{'form':labForm})
+		hosForm = HosForm()
+		return render(request,'appClinic/addHospital.html',{'form':hosForm})
 
-def addlap(request):
+def addCli(request):
 	if(request.method=='POST'):
 
-		labForm = LabForm(request.POST)
+		cliForm = CliForm(request.POST)
 
-		if(labForm.is_valid):
+		if(cliForm.is_valid):
 			#create an instanse of user and pass it to labform >>
 			#user=myuser()
 
-			labForm.save()
+			cliForm.save()
 
 			return HttpResponseRedirect('/done/')
 
 	else:
-		labForm = LabForm()
-		return render(request,'appClinic/addLap.html',{'form':labForm})
+		cliForm = CliForm()
+		return render(request,'appClinic/addClinic.html',{'form':cliForm})
 
 
-def lapName(request):
+def hosName(request):
 
 
 	if(request.method=='POST'):
 
-			labForm = LabForm(request.POST)
-			if labForm.is_valid():
+			hosForm = HosForm(request.POST)
+			if hosForm.is_valid():
 				wtt=request.POST.get('wtt','')
 				# wtt=wtt.replace('+',' ')
 
 				wtf=request.POST.get('wtf','')
 				# wtf=wtf.replace('+',' ')
 
-				lab=labForm.save(commit=False)
+				hospital=hosForm.save(commit=False)
 				# user=myuser.objects.get(request.user.id)
 				# user=myuser(pk=request.user.id)
 				# user.save()
 				# lab.wtf=wtf
 				# lab.wtt=wtt
 				# lab.owner=myuser.objects.get(request.user)
-				lab.owner=myuser.objects.get(pk=1)
-				lab.save()
+				hospital.owner=myuser.objects.get(pk=1)
+				hospital.save()
 			else:
 				return HttpResponseRedirect('/appClinic/invalidForm.html')
 
 	return HttpResponse("Lap Name "+request.POST.get("name",""))
 
-def lapName(request):
+def cliName(request):
 
 
 	if(request.method=='POST'):
 
-			labForm = LabForm(request.POST)
-			if labForm.is_valid():
+			cliForm = LabForm(request.POST)
+			if cliForm.is_valid():
 				wtt=request.POST.get('wtt','')
 				# wtt=wtt.replace('+',' ')
 
 				wtf=request.POST.get('wtf','')
 				# wtf=wtf.replace('+',' ')
 
-				lab=labForm.save(commit=False)
+				clinic=cliForm.save(commit=False)
 				# user=myuser.objects.get(request.user.id)
 				# user=myuser(pk=request.user.id)
 				# user.save()
 				# lab.wtf=wtf
 				# lab.wtt=wtt
 				# lab.owner=myuser.objects.get(request.user)
-				lab.owner=myuser.objects.get(pk=1)
-				lab.save()
+				clinic.owner=myuser.objects.get(pk=1)
+				clinic.save()
 			else:
 				return HttpResponseRedirect('/appClinic/invalidForm.html')
 
