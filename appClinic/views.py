@@ -81,6 +81,95 @@ def lapName(request):
 				return HttpResponseRedirect('/appClinic/invalidForm.html')
 
 	return HttpResponse("Lap Name "+request.POST.get("name",""))
+
+def addlap(request):
+	if(request.method=='POST'):
+
+		labForm = LabForm(request.POST)
+
+		if(labForm.is_valid):
+			#create an instanse of user and pass it to labform >>
+			#user=myuser()
+
+			labForm.save()
+
+			return HttpResponseRedirect('/done/')
+
+	else:
+		labForm = LabForm()
+		return render(request,'appClinic/addLap.html',{'form':labForm})
+
+def addlap(request):
+	if(request.method=='POST'):
+
+		labForm = LabForm(request.POST)
+
+		if(labForm.is_valid):
+			#create an instanse of user and pass it to labform >>
+			#user=myuser()
+
+			labForm.save()
+
+			return HttpResponseRedirect('/done/')
+
+	else:
+		labForm = LabForm()
+		return render(request,'appClinic/addLap.html',{'form':labForm})
+
+
+def lapName(request):
+
+
+	if(request.method=='POST'):
+
+			labForm = LabForm(request.POST)
+			if labForm.is_valid():
+				wtt=request.POST.get('wtt','')
+				# wtt=wtt.replace('+',' ')
+
+				wtf=request.POST.get('wtf','')
+				# wtf=wtf.replace('+',' ')
+
+				lab=labForm.save(commit=False)
+				# user=myuser.objects.get(request.user.id)
+				# user=myuser(pk=request.user.id)
+				# user.save()
+				# lab.wtf=wtf
+				# lab.wtt=wtt
+				# lab.owner=myuser.objects.get(request.user)
+				lab.owner=myuser.objects.get(pk=1)
+				lab.save()
+			else:
+				return HttpResponseRedirect('/appClinic/invalidForm.html')
+
+	return HttpResponse("Lap Name "+request.POST.get("name",""))
+
+def lapName(request):
+
+
+	if(request.method=='POST'):
+
+			labForm = LabForm(request.POST)
+			if labForm.is_valid():
+				wtt=request.POST.get('wtt','')
+				# wtt=wtt.replace('+',' ')
+
+				wtf=request.POST.get('wtf','')
+				# wtf=wtf.replace('+',' ')
+
+				lab=labForm.save(commit=False)
+				# user=myuser.objects.get(request.user.id)
+				# user=myuser(pk=request.user.id)
+				# user.save()
+				# lab.wtf=wtf
+				# lab.wtt=wtt
+				# lab.owner=myuser.objects.get(request.user)
+				lab.owner=myuser.objects.get(pk=1)
+				lab.save()
+			else:
+				return HttpResponseRedirect('/appClinic/invalidForm.html')
+
+	return HttpResponse("Lap Name "+request.POST.get("name",""))
 def invalidForm(request):
 	return HttpResponse("Invalid Form >>> ")
 
@@ -93,7 +182,7 @@ def login(request):
 		user = authenticate(username=usern , password=passwrd)
 		if user is not None:
 			# the password verified for the user
-			return HttpResponse("User is valid, active and authenticated")
+			return render(request, 'appClinic/index.html')
 			##after redirect to page get user object by (request.user)
 		else:
 			# the authentication system was unable to verify the username and password
@@ -123,8 +212,9 @@ def register(request):
 		p2.save()
 		return  HttpResponse("succeded")
 	else:
-		reg = registerForm()
-		return render(request,'appClinic/register.html',{'form':reg.as_ul})
+		reg = registerForm
+		reg2 = registerf
+		return render(request,'appClinic/register.html',{'form':reg,'form2':reg2})
     
 def search (request):
 	result_lab =labAnalysis.objects.all()
