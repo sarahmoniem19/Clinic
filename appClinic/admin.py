@@ -6,6 +6,9 @@ from .models import *
 
 
 admin.site.register(clinic)
-# admin.site.register(lab)
-# admin.site.register(labAnalysis)
-# admin.site.register(hospital)
+admin.site.register(lab)
+admin.site.register(labAnalysis)
+
+admin.site.register(hospital)
+admin.site.register(myuser)
+
