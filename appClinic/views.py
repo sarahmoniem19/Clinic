@@ -94,7 +94,7 @@ def login(request):
 		user = authenticate(username=usern , password=passwrd)
 		if user is not None:
 			# the password verified for the user
-			return HttpResponse("User is valid, active and authenticated")
+			return render(request, 'appClinic/index.html')
 			##after redirect to page get user object by (request.user)
 		else:
 			# the authentication system was unable to verify the username and password
@@ -124,8 +124,9 @@ def register(request):
 		p2.save()
 		return  HttpResponse("succeded")
 	else:
-		reg = registerForm()
-		return render(request,'appClinic/register.html',{'form':reg.as_ul})
+		reg = registerForm
+		reg2 = registerf
+		return render(request,'appClinic/register.html',{'form':reg,'form2':reg2})
     
 def search (request):
     if 'data' in request.GET:

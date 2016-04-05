@@ -6,13 +6,13 @@ from django import forms
 from django.contrib.auth.models import User
 
 class myuser (models.Model):
-	user = models.OneToOneField(User, unique=True)
-	dob  	=models.DateField('Date of birth ')
-	gender  =models.CharField(max_length=10)
-	country =models.CharField(max_length=50)
-	city 	=models.CharField(max_length=50)
-	region 	=models.CharField(max_length=50)
-	accType =models.CharField(max_length=1)
+	user    = models.OneToOneField(User, unique=True)
+	dob  	= models.DateField('Date of birth ')
+	gender  = models.CharField(max_length=10)
+	country = models.CharField(max_length=50)
+	city 	= models.CharField(max_length=50)
+	region 	= models.CharField(max_length=50)
+	accType = models.CharField(max_length=1)
 
 
 
