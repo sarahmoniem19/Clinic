@@ -74,7 +74,7 @@ def lapName(request):
 				
 				lab.wtf=wtf
 				lab.wtt=wtt
-				lab.owner=user
+				lab.owner=request.user
 				
 				lab.save()
 			else:
