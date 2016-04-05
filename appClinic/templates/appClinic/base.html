@@ -1,94 +1,67 @@
 {% load staticfiles %}
- <!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clinic</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{% static 'css/mystyles.css' %}">
-    <script type="text/javascript" src="/my_admin/jsi18n/"></script>
-    <script type="text/javascript" src="/media/admin/js/core.js"></script>
-    <link rel="stylesheet" type="text/css" 
-    href="{% static 'admin/css/forms.css' %} "/>
-<link rel="stylesheet" type="text/css" 
-    href="{% static 'admin/css/base.css' %} "/>
-<link rel="stylesheet" type="text/css" 
-    href="{% static 'admin/css/global.css' %}"/>
-<link rel="stylesheet" type="text/css" 
-    href="{% static 'admin/css/widgets.css' %}"/>
-
-
-<script type="text/javascript" 
-    src="/admin/jsi18n/"></script>
-<script type="text/javascript" 
-    src="{% static 'admin/js/core.js' %}"></script>
-<script type="text/javascript" 
-    src="{% static 'admin/js/admin/RelatedObjectLookups.js' %}"></script>
-<script type="text/javascript" 
-    src="{% static 'admin/js/jquery.js' %}"></script>
-
-<script type="text/javascript" 
-    src="{% static 'admin/js/actions.js' %}"></script>
-<script type="text/javascript" 
-    src="{% static 'admin/js/calendar.js' %}"></script>
-<script type="text/javascript" 
-    src="{% static 'admin/js/admin/DateTimeShortcuts.js' %}"></script>
-</head>
-
-
-
-<body>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <a class="navbar-brand" href="{% url 'app:index' %}">The Clinic</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="{% url 'app:index' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
+ <html>
+ 
+ <head>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title>Add Clinic</title>
+     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+     <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+     <link rel="stylesheet" href="{% static 'css/mystyles.css' %}">
+ </head>
+ 
+ 
+ 
+ <body>
+ 
+     <nav class="navbar navbar-inverse navbar-fixed-top">
+         <div class="container">
+             <div class="navbar-header">
+                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                     <span class="sr-only">Toggle navigation</span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                 </button>
+                 <a class="navbar-brand" href="/appClinic/">The Clinic</a>
+             </div>
+             <div id="navbar" class="navbar-collapse collapse">
+                 <ul class="nav navbar-nav">
                     <li>
-                        <a data-toggle="modal" data-target="#loginModal">
-                            <span class="glyphicon glyphicon-log-in"></span> Login</a>
-                    </li>
-                </ul>
-
-            </div>
-        </div>
-    </nav>
-    <div class="container">
-        {% block content %} {% endblock %}
-    </div>
-
-    <footer>
-        <div class="container row-footer">
-            <div class="row ">
-                <div class="col-xs-12">
-                    <p style="padding:5px;" class="text-center">Clinic</p>
+                        <a href="/appClinic/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
+                     </li>
+                 </ul>
+                 <ul class="nav navbar-nav navbar-right">
+                     <li>
+                         <a data-toggle="modal" data-target="#loginModal">
+                             <span class="glyphicon glyphicon-log-in"></span> Login</a>
+                     </li>
+                 </ul>
+ 
+             </div>
+         </div>
+     </nav>
+     <div class="container">
+         {% block content %} {% endblock %}
+     </div>
+ 
+     <footer>
+         <div class="container row-footer">
+             <div class="row ">
+              
                 </div>
-            </div>
-        </div>
-    </footer>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-</body>
-
-</html>
+                 <div class="col-xs-12">
+                    <p style="padding:5px;" class="text-center">Clinic</p>
+                 </div>
+             </div>
+         </div>
+     </footer>
+     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+     <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+ </body>
+ 
+ </html>
