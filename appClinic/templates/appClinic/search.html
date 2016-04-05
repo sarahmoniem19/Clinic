@@ -2,6 +2,7 @@
 <html>
 <head>
   <script type="text/javascript" src="jquery-2.0.0.min.js"> </script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 </head>
 
 <body>  
@@ -11,9 +12,10 @@
 <div id="type">
   <p>Type</p> 
   <select name="type" >
-    <option value="Clinics" name="Clinics">Clinics</option>
+    <option id="clinic" value="Clinics" name="Clinics">Clinics</option>
     <option value="Labs" name="Labs" >Labs</option>
     <option value="Hospitals" name="Hospitals" >Hospitals</option>
+
   </select> 
 </div>
 
@@ -21,27 +23,18 @@
   <p> Location </p> 
   <select name="location">
     <option value="Cairo" name="Cairo" >cairo</option>
-    <option value="Alex" name="Alex">alex</option>
-    <option value="Giza" name="Giza" >giza</option>
-    <option value="mansoura" name="mansoura" >mansoura</option>
-  </select> 
+    <option value="Giza" name="Giza" >Giza</option>
+    <option value="Mansoura" name="Mansoura" >Mansoura</option>
+    <option value="Banha" name="Banha" >Mansoura</option>
+  </select>
 </div>
 
 <div id="spec">
   <p>Specification </p> 
   <select name="spec">
-    <option value="Pediatrics" name="Pediatrics" >Pediatrics</option>
-    <option value="Ophthalmology" name="Ophthalmology">Ophthalmology</option>
-    <option value="Dermatology" name="Dermatology" >Dermatology</option>
-    <option value="Urology" name="Urology" >Urology</option>
-    <option value="cardiology" name="cardiology" >cardiology</option>
-    <option value="orthopaedic" name="orthopaedic" >orthopaedic</option>	
-    <option value="internal-medicine" name="internal-medicine" >internal-medicine</option>
-    <option value="gynacology" name="gynacology" >gynacology</option>
-    <option value="dentist" name="dentist" >dentist</option>
-    <option value="hepatology" name="hepatology" >hepatology</option>
-    <option value="Plastic Surgery" name="Plastic Surgery" >Plastic Surgery</option>
-    <option value="Surgery" name="Surgery" >Surgery</option>
+    {% for spec in spec_clinic %}
+    <option value="{{spec.cSpec}}" name="{{spec.cSpec}}" >{{spec.cSpec}}</option>
+    {%endfor%}
   </select>
 </div>   
 
@@ -67,9 +60,9 @@
 <div id="lab_analysis">
   <p> Lab Analysis </p> 
   <select name="lab_analysis">
-    <option value="1" name="test1" >test1</option>
-    <option value="2" name="test2">test2</option>
-    <option value="3" name="test3" >test3</option>
+    {% for lab in result_lab %}
+    <option value="{{lab.labId}}" name="{{lab.analysistype}}" >{{lab.analysistype}}</option>
+    {%endfor%}
   </select> 
 </div>
 
@@ -78,7 +71,7 @@
 
 
 {% if not query_clinic and query_lab and query_hosptail%}
-<p> NO DATA </p>
+  <p> Sorry NO DATA </p>
 {% endif %}
 
 {% for query in query_clinic %}
@@ -101,10 +94,7 @@
     {%endif%}
     {%endif%}
 
-    {% empty %}
-      <p>sorry no Clinics with this name</p>
 {%endfor%}
-
 
 {% for query in query_lab %}
     {%if forloop.first%}
@@ -127,8 +117,6 @@
     {%endif%}
 
 {%endfor%}
-
-
 
 {% for query in query_hosptail %}
     {%if forloop.first%}
@@ -154,19 +142,16 @@
     {%endif%}
 
   {%endfor%}
+ <!-- advanced search --> 
+
+
 <script>
 $(document).ready(function(){
-   //var x = $("#type select option").value;
-   console.log("xx");
+  if ($("#clinic").selected)
+  {
+      $("#lab_analysis").hide();
+  }
 });
- 
-
-
-/*if(x=='Clinics'){
-  $("#type").hide();
-}*/
-
-
 </script>
 
 
