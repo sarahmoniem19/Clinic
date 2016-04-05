@@ -128,18 +128,17 @@ def register(request):
 		return render(request,'appClinic/register.html',{'form':reg.as_ul})
     
 def search (request):
-    if 'data' in request.GET:
-        value = request.GET['data']
-        query_clinic = clinic.objects.filter (name__icontains =  value) 
-        query_lab = lab.objects.filter (name__icontains = value)
-        query_hospital = hospital.objects.filter (name__icontains = value)
-        return render(request,'appClinic/search.html',{'query_clinic':query_clinic ,'query_lab':query_lab,'query_hospital':query_hospital})
-    else:
-        return render (request, 'appClinic/search_simple.html')	 		 	 	
-
-    
-	
-
+	result_lab =labAnalysis.objects.all()
+	spec_clinic =clinic.objects.all()
+	loc_hospital=hospital.objects.all()
+	loc_lab=lab.objects.all()
+	if 'data' in request.GET:
+		value = request.GET['data']
+		query_clinic = clinic.objects.filter (name__icontains =  value) 
+		query_lab = lab.objects.filter (name__icontains = value)
+		query_hospital = hospital.objects.filter (name__icontains = value)
+		return render(request,'appClinic/search.html',{'query_clinic':query_clinic,'query_lab':query_lab,'query_hospital':query_hospital,'result_lab':result_lab,'spec_clinic':spec_clinic,'loc_hospital':loc_hospital,'loc_lab':loc_lab})
+		
 def search_simple(request):
 	return render (request,'appClinic/search_simple.html')
 	
@@ -148,40 +147,50 @@ def result(request):
 		search = request.GET['type']
 		if search == "Clinics":
 			if 'location' in request.GET:
-				loc = request.GET['location']
+				loca = request.GET['location']
 			if 'spec' in request.GET:
 				spec = request.GET['spec']
 			if 'price' in request.GET:
 				cost = request.GET['price']
 				if cost == '2':
 					#results = clinic.objects.get ( Q(cost__lt = 300) & Q(cost__gte = 100) & Q(city__icontains = loc) & Q(cSpec__icontains = spec) ) 
-					results = clinic.objects.filter (price__range=(100, 300) , city__icontains = loc , cSpec__icontains = spec) 
-					return render (request, 'appClinic/result.html' , {'results':results , "type": clinic})
+					results = clinic.objects.filter (price__range=(100, 300) , city__icontains = loca , cSpec__icontains = spec) 
+					return render (request, 'appClinic/result.html' , {'results':results , "type": clinic })
 				elif cost == '1':	
-					results = clinic.objects.all().filter (city__icontains = loc , cSpec__icontains = spec , price__lte = 100)
-					return render (request, 'appClinic/result.html' , {'results':results})
+					results = clinic.objects.all().filter (city__icontains = loca , cSpec__icontains = spec , price__lte = 100)
+					return render (request, 'appClinic/result.html' , {'results':results , "type": clinic})
 				elif cost == '3':	
 					#results = clinic.objects.filter (city__icontains = loc , cSpec__icontains = spec , cost__lte = 500 , cost__gte = 300)
-					results = clinic.objects.filter (price__range=(300, 500) , city__icontains = loc , cSpec__icontains = spec) 
+					results = clinic.objects.filter (price__range=(300, 500) , city__icontains = loca , cSpec__icontains = spec) 
 					return render (request, 'appClinic/result.html' , {'results':results , "type": clinic})	
 				elif cost == '4':	
-					results = clinic.objects.filter (city__icontains = loc , cSpec__icontains = spec , price__gt = 500)
+					results = clinic.objects.filter (city__icontains = loca , cSpec__icontains = spec , price__gt = 500)
 					return render (request, 'appClinic/result.html' , {'results':results , "type": clinic})
-		elif search == "Hospitals":
+		if search == "Hospitals":
 			if 'location' in request.GET:
-				loc = request.GET['location']
+				loca = request.GET['location']
 			if 'level' in request.GET:
 				le = request.GET['level']
-				results = hospital.objects.filter (city__icontains = loc , level__icontains = le)
-				return render (request, 'appClinic/result.html' , {'request':request , "type": hospital})	 	
-		elif search == "Labs":	
+				results = hospital.objects.filter (city__icontains = loca , level__icontains = le)
+				return render (request, 'appClinic/result.html' , {'results':results , "type": hospital })	 	
+		if search == "Labs":	
 			if 'location' in request.GET:
-				loc = request.GET['location']
+				loca = request.GET['location']
 			if 'level' in request.GET:
-				le = request.GET['level']
+				le = request.GET['level']	
+				results = lab.objects.filter (city__icontains = loca , level__icontains = le)
+				return render (request, 'appClinic/result.html' , {'results':results,"type": lab}) 
 			if 'lab_analysis' in request.GET:
-				le = request.GET['lab_analysis']	
-				results = lab.objects.filter (city__icontains = loc , level__icontains = le , type__icontains = lab_analysis)
-				return render (request, 'appClinic/result.html' , {'request':request , "type": lab})	 		 	 	
-		
-
+				la = request.GET['lab_analysis']
+				#get all labAnalysis
+				labAna = labAnalysis.objects.all()
+				#get FK ID
+				labAnaID = labAna.labId_id
+				#get required ((labs))
+				labsList = lab.objects.filter (city__icontains = loca , level__icontains = le)
+				#get where lab ID = labanalysis ID FK
+				#get all labs in loca & le & type in labAnalysis = la 
+				results=lab.objects.get( id=labAnaID)	
+					
+				return render (request, 'appClinic/result.html' , {'results':results,"type": lab}) 
+ 

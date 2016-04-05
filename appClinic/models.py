@@ -21,8 +21,8 @@ class property (models.Model):
 	owner	= models.ForeignKey(myuser , on_delete=models.CASCADE)
 	name    = models.CharField(max_length=50)
 	logo    = models.CharField(max_length=50, default='')
-	wtf   	= models.DateTimeField('working time from')
-	wtt   	= models.DateTimeField('workign time to')
+	wtf   	= models.TimeField('working time from')
+	wtt   	= models.TimeField('working time to')
 	country = models.CharField(max_length=50)
 	city 	= models.CharField(max_length=50)
 	region 	= models.CharField(max_length=50)
@@ -30,6 +30,7 @@ class property (models.Model):
 	phone	= models.CharField(max_length=50)
 	total_ranks=models.IntegerField(default=0)
 	users_rated=models.IntegerField(default=0)
+	level 	= models.CharField(max_length=50, default='')
 
 	class Meta:
 		abstract=True

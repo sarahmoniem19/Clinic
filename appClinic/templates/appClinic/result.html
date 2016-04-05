@@ -1,29 +1,28 @@
-
 {% for result in results %}
-		{%if forloop.first%}
-			<table>
-				<tr>
-	    				<td> <a href="/?name={{type}}/?id={{result.id}}/" >{{result.name}}</a> </td>
+    {%if forloop.first%}
+      <table>
+        <tr>
+              <td> <a href="/?name={{type}}/?id={{result.id}}/" >{{result.name}}</a> </td>
 
-				</tr>
-		{% else %}
-		{%if forloop.last%}
-				<tr>
-	    				<td> <a href="/?name={{type}}/?id={{result.id}}/" >{{result.name}}</a> </td>
+        </tr>
+    {% else %}
+    {%if forloop.last%}
+        <tr>
+              <td> <a href="/?name={{type}}/?id={{result.id}}/" >{{result.name}}</a> </td>
 
-				</tr>
-			</table>
-		{%else%}
-			<tr>
-	    			    <td> <a href="/?name={{type}}/?id={{result.id}}/" >{{result.name}}</a> </td>
+        </tr>
+      </table>
+    {%else%}
+      <tr>
+                <td> <a href="/?name={{type}}/?id={{result.id}}/" >{{result.name}}</a> </td>
 
-			</tr>
+      </tr>
 
-		{%endif%}
-		{%endif%}
+    {%endif%}
+    {%endif%}
 
-		{% empty %}
-			<p>sorry no data related to your search type</p>
+    {% empty %}
+      <p>sorry no data related to your search </p>
 {%endfor%}
 
 
