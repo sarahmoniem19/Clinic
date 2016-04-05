@@ -1,0 +1,17 @@
+{% extends 'appClinic/base.html' %} {% block content %}
+{{ form.media }}
+<div class="row row-content">
+    <div class="col-sm-8 col-md-8">
+        <h2 class="text-primary text-center"> Add Hospital </h2>
+
+        <form action="/appClinic/lapName/" method="post" >
+            {% csrf_token %} {% load bootstrap %} {{ form|bootstrap }}
+            <div class="form-group">
+                <div class="col-sm-offset-6 col-sm-5">
+                    <input type="submit" value="Add Hospital" class="btn btn-default" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
