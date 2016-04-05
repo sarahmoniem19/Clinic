@@ -1,20 +1,22 @@
 
 {% extends 'appClinic/base.html' %} {% block content %}
-
+<div class = "row">
 <h3 class="text-info text-center"> advanced Search </h3>
 
-<div class="col-sm-3">
-    <form action="{% url 'app:result' %}" method="get" class="form-horizontal">
-
-        <div id="type">
+<div class="col-sm-12">
+    <form action="{% url 'app:result' %}" method="get" class="form-inline">
+        <div class="form-group">
+            <div id="type">
             <p>Type</p>
             <select name="type" class="form-control">
                 <option value="Clinics" name="Clinics">Clinics</option>
                 <option value="Labs" name="Labs">Labs</option>
                 <option value="Hospitals" name="Hospitals">Hospitals</option>
             </select>
+            </div>
         </div>
-
+        
+        <div class="form-group">
         <div id="location">
             <p> Location </p>
             <select name="location" class="form-control">
@@ -22,10 +24,11 @@
                 <option value="Alex" name="Alex">alex</option>
                 <option value="Giza" name="Giza">giza</option>
                 <option value="Mansoura" name="Mansoura" >Mansoura</option>
-                <option value="Banha" name="Banha" >Mansoura</option>
+                <option value="Banha" name="Banha" >Banha</option>
             </select>
         </div>
-
+    </div>
+    <div class="form-group">
         <div id="spec">
             <p>Specification </p>
             <select name="spec" class="form-control">
@@ -34,7 +37,8 @@
                 {%endfor%}
             </select>
         </div>
-
+    </div>
+    <div class="form-group">
         <div id="price">
             <p> Price </p>
             <select name="price" class="form-control">
@@ -44,7 +48,9 @@
                 <option value="4" name="more than 500">more than 500</option>
             </select>
         </div>
+    </div>
 
+    <div class="form-group">
         <div id="level">
             <p> Level </p>
             <select name="level" class="form-control">
@@ -53,7 +59,8 @@
                 <option value="3" name="C">C</option>
             </select>
         </div>
-
+    </div>
+    <div class="form-group">
         <div id="lab_analysis" style="margin:10 auto">
             <p> Lab Analysis </p>
             <select name="lab_analysis" class="form-control">
@@ -62,11 +69,15 @@
                 {%endfor%}
             </select>
         </div>
-        <button class="btn btn-info"> Search</button>
-
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-info form-control" value="Search">
+    </div>
     </form>
 
 </div>
+
+
     {% if not query_clinic and query_lab and query_hosptail%}
 <p> NO DATA </p>
 {% endif %} {% for query in query_clinic %} {%if forloop.first%}
@@ -121,8 +132,8 @@
 
 
 
-
 {%endif%} {%endif%} {%endfor%}
+</div>
 
 <script>
 $(document).ready(function(){

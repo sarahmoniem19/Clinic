@@ -1,6 +1,9 @@
+
+{% extends 'appClinic/base.html' %} {% block content %}
+<div class="row" style="height:80%">
 {% for result in results %}
     {%if forloop.first%}
-      <table>
+      <table class="table table-striped">
         <tr>
               <td> <a href="/?name={{type}}/?id={{result.id}}/" >{{result.name}}</a> </td>
 
@@ -11,7 +14,7 @@
               <td> <a href="/?name={{type}}/?id={{result.id}}/" >{{result.name}}</a> </td>
 
         </tr>
-      </table>
+      </table class="table table-striped">
     {%else%}
       <tr>
                 <td> <a href="/?name={{type}}/?id={{result.id}}/" >{{result.name}}</a> </td>
@@ -22,9 +25,10 @@
     {%endif%}
 
     {% empty %}
-      <p>sorry no data related to your search </p>
+      <h1 class="text-danger text-center">sorry no data related to your search </h1>
 {%endfor%}
 
 
 
-
+{% endblock %}
+<div>
