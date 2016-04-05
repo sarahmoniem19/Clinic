@@ -77,12 +77,22 @@ WSGI_APPLICATION = 'ClinicProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'OPTIONS': {
+#             'read_default_file': 'ClinicProject/db.cnf',
+#         },
+#     }
+# }
+
 DATABASES = {
-    'default': {
+     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': 'ClinicProject/db.cnf',
-        },
+        'NAME'  : 'Clinic_db',
+        'HOST'  : 'localhost',
+        'USER'  : 'magdy',
+        'PASSWORD':'iti',
     }
 }
 
