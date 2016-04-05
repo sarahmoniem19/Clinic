@@ -1,31 +1,16 @@
+{% extends 'appClinic/base.html' %} {% block content %}
+<div class="row row-content">
+    <div class="col-sm-8 col-md-8">
+        <h2 class="text-primary text-center"> Add Lab </h2>
 
-{% extends 'appClinic/base.html' %}
-{% block content %}
-<h2>Add Lap </h2>
-
-<form action="/appClinic/lapName/" method="post">
-{%	csrf_token %}
-
-
-{% load bootstrap %}
-
-{{ form|bootstrap }}
-<input type="submit" value="Add Lap" class="btn-primary"/>
-
-
-<!-- <table>
-
-{% for field in form %}
-<tr>
-<td>{{ field.label_tag }} {{field}}</td>
-</tr>
-{% endfor %}
-
-
-<tr>
-<td><input type="submit" value="Add Lap"/></td>
-</tr>
-</table> -->
-</form>
-
+        <form action="/appClinic/lapName/" method="post" >
+            {% csrf_token %} {% load bootstrap %} {{ form|bootstrap }}
+            <div class="form-group">
+                <div class="col-sm-offset-6 col-sm-5">
+                    <input type="submit" value="Add Lap" class="btn btn-default" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}

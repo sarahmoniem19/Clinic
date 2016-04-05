@@ -1,149 +1,128 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <script type="text/javascript" src="jquery-2.0.0.min.js"> </script>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-</head>
 
-<body>  
-<form action="/appClinic/result/" method="get">
+{% extends 'appClinic/base.html' %} {% block content %}
 
-<h3> advanced Search </h3>
-<div id="type">
-  <p>Type</p> 
-  <select name="type" >
-    <option id="clinic" value="Clinics" name="Clinics">Clinics</option>
-    <option value="Labs" name="Labs" >Labs</option>
-    <option value="Hospitals" name="Hospitals" >Hospitals</option>
+<h3 class="text-info text-center"> advanced Search </h3>
 
-  </select> 
+<div class="col-sm-3">
+    <form action="{% url 'app:result' %}" method="get" class="form-horizontal">
+
+        <div id="type">
+            <p>Type</p>
+            <select name="type" class="form-control">
+                <option value="Clinics" name="Clinics">Clinics</option>
+                <option value="Labs" name="Labs">Labs</option>
+                <option value="Hospitals" name="Hospitals">Hospitals</option>
+            </select>
+        </div>
+
+        <div id="location">
+            <p> Location </p>
+            <select name="location" class="form-control">
+                <option value="Cairo" name="Cairo">cairo</option>
+                <option value="Alex" name="Alex">alex</option>
+                <option value="Giza" name="Giza">giza</option>
+                <option value="Mansoura" name="Mansoura" >Mansoura</option>
+                <option value="Banha" name="Banha" >Mansoura</option>
+            </select>
+        </div>
+
+        <div id="spec">
+            <p>Specification </p>
+            <select name="spec" class="form-control">
+               {% for spec in spec_clinic %}
+                <option value="{{spec.cSpec}}" name="{{spec.cSpec}}" >{{spec.cSpec}}</option>
+                {%endfor%}
+            </select>
+        </div>
+
+        <div id="price">
+            <p> Price </p>
+            <select name="price" class="form-control">
+                <option value="1" name="less than 100">less than 100</option>
+                <option value="2" name="100 - 300">100 - 300</option>
+                <option value="3" name="300 - 500">300 - 500</option>
+                <option value="4" name="more than 500">more than 500</option>
+            </select>
+        </div>
+
+        <div id="level">
+            <p> Level </p>
+            <select name="level" class="form-control">
+                <option value="1" name="A">A</option>
+                <option value="2" name="B">B</option>
+                <option value="3" name="C">C</option>
+            </select>
+        </div>
+
+        <div id="lab_analysis" style="margin:10 auto">
+            <p> Lab Analysis </p>
+            <select name="lab_analysis" class="form-control">
+                {% for lab in result_lab %}
+                 <option value="{{lab.labId}}" name="{{lab.analysistype}}" >{{lab.analysistype}}</option>
+                {%endfor%}
+            </select>
+        </div>
+        <button class="btn btn-info"> Search</button>
+
+    </form>
+
 </div>
+    {% if not query_clinic and query_lab and query_hosptail%}
+<p> NO DATA </p>
+{% endif %} {% for query in query_clinic %} {%if forloop.first%}
+<table class="table table-striped">
+    <tr>
+        <td> <a href="/?name=clinic/?id={{query.id}}/">{{query.name}}</a></td>
+    </tr>
+    {% else %} {%if forloop.last%}
+    <tr>
+        <td> <a href="/?name=clinic/?id={{query.id}}/">{{query.name}}</a></td>
+    </tr>
+</table>
+{%else%}
+<tr>
+    <td> <a href="/?name=clinic/?id={{query.id}}/">{{query.name}}</a></td>
+</tr>
 
-<div id="location">
-  <p> Location </p> 
-  <select name="location">
-    <option value="Cairo" name="Cairo" >cairo</option>
-    <option value="Giza" name="Giza" >Giza</option>
-    <option value="Mansoura" name="Mansoura" >Mansoura</option>
-    <option value="Banha" name="Banha" >Mansoura</option>
-  </select>
-</div>
+{%endif%} {%endif%} {% empty %}
+<p>sorry no Clinics with this name</p>
+{%endfor%} {% for query in query_lab %} {%if forloop.first%}
+<table class="table">
+    <tr>
+        <td> <a href="/?name=lab/?id={{query.id}}/">{{query.name}}</a></td>
+    </tr>
+    {% else %} {%if forloop.last%}
+    <tr>
+        <td> <a href="/?name=lab/?id={{query.id}}/">{{query.name}}</a></td>
+    </tr>
+</table>
+{%else%}
+<tr>
+    <td> <a href="/?name=lab/?id={{query.id}}/">{{query.name}}</a></td>
+</tr>
 
-<div id="spec">
-  <p>Specification </p> 
-  <select name="spec">
-    {% for spec in spec_clinic %}
-    <option value="{{spec.cSpec}}" name="{{spec.cSpec}}" >{{spec.cSpec}}</option>
-    {%endfor%}
-  </select>
-</div>   
+{%endif%} {%endif%} {%endfor%} {% for query in query_hosptail %} {%if forloop.first%}
+<table class="table">
+    <tr>
+        <td> <a href="/?name=hosptail/?id={{query.id}}/">{{query.name}}</a></td>
 
-<div id="price">
-  <p> Price </p> 
-  <select name="price">
-    <option value="1" name="less than 100" >less than 100</option>
-    <option value="2" name="100 - 300">100 - 300</option>
-    <option value="3" name="300 - 500" >300 - 500</option>
-    <option value="4" name="more than 500" >more than 500</option>
-  </select> 
-</div>
+    </tr>
+    {% else %} {%if forloop.last%}
+    <tr>
+        <td> <a href="/?name=hosptail/?id={{query.id}}/">{{query.name}}</a></td>
 
-<div id="level">
-  <p> Level </p> 
-  <select name="level">
-    <option value="1" name="A" >A</option>
-    <option value="2" name="B">B</option>
-    <option value="3" name="C" >C</option>
-  </select> 
-</div>
+    </tr>
+</table>
+{%else%}
+<tr>
+    <td> <a href="/?name=hosptail/?id={{query.id}}/">{{query.name}}</a></td>
 
-<div id="lab_analysis">
-  <p> Lab Analysis </p> 
-  <select name="lab_analysis">
-    {% for lab in result_lab %}
-    <option value="{{lab.labId}}" name="{{lab.analysistype}}" >{{lab.analysistype}}</option>
-    {%endfor%}
-  </select> 
-</div>
-
-<input type="submit" value="search">
-</form>
+</tr>
 
 
-{% if not query_clinic and query_lab and query_hosptail%}
-  <p> Sorry NO DATA </p>
-{% endif %}
 
-{% for query in query_clinic %}
-    {%if forloop.first%}
-      <table>
-        <tr>
-            <td> <a href="/?name=clinic/?id={{query.id}}/" >{{query.name}}</a></td>
-        </tr>
-    {% else %}
-    {%if forloop.last%}
-        <tr>
-            <td> <a href="/?name=clinic/?id={{query.id}}/" >{{query.name}}</a></td>
-        </tr>
-      </table>
-    {%else%}
-      <tr>
-            <td> <a href="/?name=clinic/?id={{query.id}}/" >{{query.name}}</a></td>
-      </tr>
 
-    {%endif%}
-    {%endif%}
-
-{%endfor%}
-
-{% for query in query_lab %}
-    {%if forloop.first%}
-      <table>
-        <tr>
-            <td> <a href="/?name=lab/?id={{query.id}}/" >{{query.name}}</a></td>
-        </tr>
-    {% else %}
-    {%if forloop.last%}
-        <tr>
-            <td> <a href="/?name=lab/?id={{query.id}}/" >{{query.name}}</a></td>
-        </tr>
-      </table>
-    {%else%}
-      <tr>
-            <td> <a href="/?name=lab/?id={{query.id}}/" >{{query.name}}</a></td>
-      </tr>
-
-    {%endif%}
-    {%endif%}
-
-{%endfor%}
-
-{% for query in query_hosptail %}
-    {%if forloop.first%}
-      <table>
-        <tr>
-            <td> <a href="/?name=hosptail/?id={{query.id}}/" >{{query.name}}</a></td>
-
-        </tr>
-    {% else %}
-    {%if forloop.last%}
-        <tr>
-            <td> <a href="/?name=hosptail/?id={{query.id}}/" >{{query.name}}</a></td>
-
-        </tr>
-      </table>
-    {%else%}
-      <tr>
-            <td> <a href="/?name=hosptail/?id={{query.id}}/" >{{query.name}}</a></td>
-
-      </tr>
-
-    {%endif%}
-    {%endif%}
-
-  {%endfor%}
- <!-- advanced search --> 
-
+{%endif%} {%endif%} {%endfor%}
 
 <script>
 $(document).ready(function(){
@@ -152,10 +131,11 @@ $(document).ready(function(){
       $("#lab_analysis").hide();
   }
 });
+
+    /*if(x=='Clinics'){
+      $("#type").hide();
+    }*/
 </script>
 
 
-
-</body>
- </html>
-  
+{% endblock %}
