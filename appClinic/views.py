@@ -36,8 +36,10 @@ def yourName(request):
 	return HttpResponse("your name is "+request.POST.get("yourName", ""))
 
 
+
 def addlap(request):
 	if(request.method=='POST'):
+
 		labForm = LabForm(request.POST)
 
 		if(labForm.is_valid):
@@ -54,34 +56,31 @@ def addlap(request):
 
 
 def lapName(request):
- #I'm the a8baaaa wa7d f el doniaaaaa 
 
- #Stupid ...........................Stupid
 
-	#done added lap
 	if(request.method=='POST'):
 
 			labForm = LabForm(request.POST)
 			if labForm.is_valid():
 				wtt=request.POST.get('wtt','')
-				wtt=wtt.replace('+',' ')
+				# wtt=wtt.replace('+',' ')
 
 				wtf=request.POST.get('wtf','')
-				wtf=wtf.replace('+',' ')
+				# wtf=wtf.replace('+',' ')
 
 				lab=labForm.save(commit=False)
-				user=myuser.objects.get(pk=2)
-				
-				lab.wtf=wtf
-				lab.wtt=wtt
-				lab.owner=request.user
-				
+				# user=myuser.objects.get(request.user.id)
+				# user=myuser(pk=request.user.id)
+				# user.save()
+				# lab.wtf=wtf
+				# lab.wtt=wtt
+				# lab.owner=myuser.objects.get(request.user)
+				lab.owner=myuser.objects.get(pk=1)
 				lab.save()
 			else:
 				return HttpResponseRedirect('/appClinic/invalidForm.html')
 
 	return HttpResponse("Lap Name "+request.POST.get("name",""))
-
 def invalidForm(request):
 	return HttpResponse("Invalid Form >>> ")
 
