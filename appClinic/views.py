@@ -426,6 +426,7 @@ def del_anal(request):
 					
 				return render (request, 'appClinic/result.html' , {'results':results,"type": lab}) 
  
+<<<<<<< HEAD
 
 
 def home(request):
@@ -435,3 +436,5 @@ def home(request):
    return render_to_response('home.html',
                              context_instance=context)"""
 
+=======
+>>>>>>> ca777895de0360d554bf1ef9da49fe401553defc

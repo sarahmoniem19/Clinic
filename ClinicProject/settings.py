@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'material',
     'bootstrapform',
     'datetimewidget',
-    'social.apps.django_app.default',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -53,8 +52,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
-
+    'django.middleware.locale.LocaleMiddleware', 
 ]
 
 ROOT_URLCONF = 'ClinicProject.urls'
@@ -75,29 +73,6 @@ TEMPLATES = [
     },
 ]
 
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-   'django.contrib.auth.context_processors.auth',
-   'django.core.context_processors.debug',
-   'django.core.context_processors.i18n',
-   'django.core.context_processors.media',
-   'django.core.context_processors.static',
-   'django.core.context_processors.tz',
-   'django.contrib.messages.context_processors.messages',
-   'social.apps.django_app.context_processors.backends',
-   'social.apps.django_app.context_processors.login_redirect',
-)
-
-AUTHENTICATION_BACKENDS = (
-   'social.backends.facebook.FacebookOAuth2',
-   'social.backends.google.GoogleOAuth2',
-   'social.backends.twitter.TwitterOAuth',
-   'django.contrib.auth.backends.ModelBackend',
-)
-
-
-
-
 WSGI_APPLICATION = 'ClinicProject.wsgi.application'
 
 
@@ -113,6 +88,7 @@ DATABASES = {
     }
 }
 
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
@@ -122,6 +98,7 @@ DATABASES = {
 #         'PASSWORD':'iti',
 #     }
 # }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -162,6 +139,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 #user authentication
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+
 
 
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'global_media')
