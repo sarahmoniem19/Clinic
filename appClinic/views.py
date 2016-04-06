@@ -283,11 +283,3 @@ def result(request):
 					
 				return render (request, 'appClinic/result.html' , {'results':results,"type": lab}) 
  
-
-
-def home(request):
-   context = RequestContext(request,
-                           {'request': request,
-                            'user': request.user})
-   return render_to_response('home.html',
-                             context_instance=context)
