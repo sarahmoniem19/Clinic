@@ -1,28 +1,7 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html>
-<head>
-  <script type="text/javascript" src="jquery-1.11.2.js"></script>
-</head>
-
-<body>  
-<form action="/appClinic/result/" method="get">
-
-<h3> advanced Search </h3>
-<div id="type">
-  <p>Type</p> 
-  <select name="type" >
-    <option value="Clinics" name="Clinics">Clinics</option>
-    <option value="Labs" name="Labs" >Labs</option>
-    <option value="Hospitals" name="Hospitals" >Hospitals</option>
-  </select> 
-</div>
-=======
->>>>>>> b6845d1722ef25afb9cfd5075a1d55782aa61d44
 
 {% extends 'appClinic/base.html' %} {% block content %}
-<div class = "row">
-<h3 class="text-info text-center"> advanced Search </h3>
+<div class = "row" style="height: 75%">
+<h3 class="text-info text-center"> Advanced Search </h3>
 
 <div class="col-sm-12">
     <form action="{% url 'app:result' %}" method="get" class="form-inline">
@@ -30,9 +9,9 @@
             <div id="type">
             <p>Type</p>
             <select name="type" class="form-control">
-                <option value="Clinics" name="Clinics">Clinics</option>
-                <option value="Labs" name="Labs">Labs</option>
-                <option value="Hospitals" name="Hospitals">Hospitals</option>
+                <option id="clinic" value="Clinics" name="Clinics">Clinics</option>
+                <option id="lab" value="Labs" name="Labs">Labs</option>
+                <option id="hospital"value="Hospitals" name="Hospitals">Hospitals</option>
             </select>
             </div>
         </div>
@@ -75,9 +54,9 @@
         <div id="level">
             <p> Level </p>
             <select name="level" class="form-control">
-                <option value="1" name="A">A</option>
-                <option value="2" name="B">B</option>
-                <option value="3" name="C">C</option>
+                <option value="A" name="A">A</option>
+                <option value="B" name="B">B</option>
+                <option value="C" name="C">C</option>
             </select>
         </div>
     </div>
@@ -155,31 +134,6 @@
 
 {%endif%} {%endif%} {%endfor%}
 </div>
-
-<script>
-$(document).ready(function(){
-<<<<<<< HEAD
-   var x = $("#type select").value();
-});
- 
-
-
-if(x=='Clinics'){
-  $("#type").hide();
-}
-
-=======
-  if ($("#clinic").selected)
-  {
-      $("#lab_analysis").hide();
-  }
-});
->>>>>>> b6845d1722ef25afb9cfd5075a1d55782aa61d44
-
-    /*if(x=='Clinics'){
-      $("#type").hide();
-    }*/
-</script>
 
 
 {% endblock %}

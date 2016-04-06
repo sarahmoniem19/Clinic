@@ -62,6 +62,7 @@ class registerForm(ModelForm):
 class registerf(ModelForm):
 	class Meta:
 		model = myuser
+		fields = ['dob', 'gender','country', 'city', 'region', 'accType']
 
 		widgets = {
             'dob': forms.DateInput(attrs={'class':'datepicker'}),

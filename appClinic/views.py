@@ -34,9 +34,7 @@ def index(request):
 	if request.method=='POST':
 		return render(request,'appClinic/loginpage.html')
 	else:
-		return render(request,'appClinic/home.html')
-
-        return render(request,'appClinic/index.html')
+		return render(request,'appClinic/index.html')
 
 
 def yourName(request):
@@ -231,10 +229,13 @@ def search (request):
 	loc_lab=lab.objects.all()
 	if 'data' in request.GET:
 		value = request.GET['data']
-		query_clinic = clinic.objects.filter (name__icontains =  value) 
-		query_lab = lab.objects.filter (name__icontains = value)
-		query_hospital = hospital.objects.filter (name__icontains = value)
-		return render(request,'appClinic/search.html',{'query_clinic':query_clinic,'query_lab':query_lab,'query_hospital':query_hospital,'result_lab':result_lab,'spec_clinic':spec_clinic,'loc_hospital':loc_hospital,'loc_lab':loc_lab})
+		if len(value) != 0:
+			query_clinic = clinic.objects.filter (name__icontains =  value) 
+			query_lab = lab.objects.filter (name__icontains = value)
+			query_hospital = hospital.objects.filter (name__icontains = value)
+			return render(request,'appClinic/search.html',{'query_clinic':query_clinic,'query_lab':query_lab,'query_hospital':query_hospital,'result_lab':result_lab,'spec_clinic':spec_clinic,'loc_hospital':loc_hospital,'loc_lab':loc_lab})
+		else:
+			return render(request,'appClinic/search.html',{'result_lab':result_lab,'spec_clinic':spec_clinic,'loc_hospital':loc_hospital,'loc_lab':loc_lab})
 	else:
 		return render(request, 'appClinic/search.html')
 		
@@ -428,4 +429,4 @@ def del_anal(request):
 					
 				return render (request, 'appClinic/result.html' , {'results':results,"type": lab}) 
  
-
+"""

@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="{% static 'css/mystyles.css' %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'imgs/favm.png' %}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" type="text/css"/>
-<script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+
 {{ form.media }}
 </head>
 
@@ -50,8 +49,15 @@
                     <li>
                         <a href=""><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> My Notifiers</a>
                     </li>
-                    <li>
-                        <a href="/appClinic/addLab"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add new Item </a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add new Item  <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/appClinic/addLab">New lab</a></li>
+                            <li><a href="/appClinic/addHos">New hospital</a></li>
+                            <li><a href="/appClinic/addCli">New clinic</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href=""><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Setting </a>
@@ -59,7 +65,7 @@
                         <li>
                         <a href=""><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout </a>
                         </li>
-                    </li>
+                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -93,17 +99,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-   <script>
-  $(function() {
-    $( ".datepicker" ).datepicker({
-      changeMonth: true,
-      changeYear: true,
-      yearRange: "1900:2012",
-      // You can put more options here.
-
-    });
-  });
-  </script>
+    <script src="{% static 'js/scripts.js' %}"></script>
 </body>
 
 </html>
