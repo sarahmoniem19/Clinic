@@ -1,5 +1,5 @@
 from django import forms
-from .models import lab
+from .models import *
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.core.exceptions import NON_FIELD_ERRORS
@@ -32,17 +32,21 @@ class LabForm(ModelForm):
 	def clean(self):
 		pass
 		
-		
+class hospitalForm(ModelForm):
+	class Meta:
+		model = hospital
+		fields = ['name','logo','wtf','wtt','country','city','region','notes','phone']
+
 		
 class registerForm(ModelForm):
 	class Meta:
 		model = User
 		fields = ['first_name','last_name','username','email','password']
-	dob = forms.DateField(label="Date of Birth" )
-	gender = forms.CharField(label="Gender",max_length=20)
-	country =forms.CharField(label="Country",max_length=50)
-	city 	=forms.CharField(label="City",max_length=50)
-	region 	=forms.CharField(label="Region",max_length=50)
-	accType =forms.CharField(label="Account type",max_length=1)
+
+class registerf(ModelForm):
+	class Meta:
+		model = myuser
+		fields = ['dob','gender','country','city','region','accType']
+
 
 

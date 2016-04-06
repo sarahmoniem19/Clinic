@@ -3,7 +3,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-	#url(r'^$',views.index,name="index"),
+	url(r'^$',views.index,name="index"),
     url(r'^getName/$',views.getName,name="getName"),
     url(r'^your-name/$',views.yourName,name="your name"),
     url(r'^addLap/$',views.addlap,name="addlap"),
@@ -14,4 +14,10 @@ urlpatterns = [
     url(r'^search/', views.search),
 	url(r'^result/', views.result),
 	url(r'^search_simple/', views.search_simple),
+    url(r'^list_additem/',views.listitems),
+    url(r'^edit_item/',views.edititem),
+    url(r'^update/',views.update),
+    url(r'update_anal/',views.update_anal),
+    url(r'del/',views.delitem),
+    url(r'del_anal/',views.del_anal)
 ]

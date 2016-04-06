@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script type="text/javascript" src="jquery-2.0.0.min.js"> </script>
+  <script type="text/javascript" src="jquery-1.11.2.js"></script>
 </head>
 
 <body>  
@@ -156,15 +156,14 @@
   {%endfor%}
 <script>
 $(document).ready(function(){
-   //var x = $("#type select option").value;
-   console.log("xx");
+   var x = $("#type select").value();
 });
  
 
 
-/*if(x=='Clinics'){
+if(x=='Clinics'){
   $("#type").hide();
-}*/
+}
 
 
 </script>

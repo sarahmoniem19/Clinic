@@ -126,3 +126,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 #user authentication
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'global_media')
+MEDIA_URL = '/media/'

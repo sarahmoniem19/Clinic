@@ -28,16 +28,12 @@ def getName(request):
 
 	return render(request,'appClinic/name.html',{'form':form})
 
-#def index(request):
-#	#return HttpResponse("Welcome to index")
-#	if request.method=='POST':
-#        val = request.POST
-#		if request.POST['login']=='zzz' :
-#            return HttpResponse("search")
-#        else:
-#			return render(request,'appClinic/loginpage.html')
-#    else:
-#        return render(request,'appClinic/home.html')
+def index(request):
+	#return HttpResponse("Welcome to index")
+	if request.method=='POST':
+		return render(request,'appClinic/loginpage.html')
+	else:
+		return render(request,'appClinic/home.html')
 
 def yourName(request):
 
@@ -188,8 +184,136 @@ def result(request):
 			if 'level' in request.GET:
 				le = request.GET['level']
 			if 'lab_analysis' in request.GET:
+				lab_analysis = request.GET('lab_analysis')
 				le = request.GET['lab_analysis']	
 				results = lab.objects.filter (city__icontains = loc , level__icontains = le , type__icontains = lab_analysis)
-				return render (request, 'appClinic/result.html' , {'request':request , "type": lab})	 		 	 	
+				return render (request, 'appClinic/result.html' , {'request':request , "type": lab})
+			#select labanalfrom labanyl,lab where labaylid=labid and labowner=1
+
+def itemprofile(request):
+	type = request.GET['name']
+	item_id = request.GET['id']
+	if type=='clinic':
+		q = clinic
+		query = q.objects.all().get(id=item_id)
+	elif type=='hospital':
+		q = hospital
+		query = q.objects.all().get(id=item_id)
+	else:
+		q = lab
+		q2 = labAnalysis
+		query = q.objects.all().get(id=item_id)
+		lab_anal_q = q2.objects.all().filter(labId_id=item_id)
+		return render(request,'appClinic/itempage.html',{'result':query,'type':type,'lab':lab_anal_q})
+	return render(request,'appClinic/itempage.html',{'result':query,'type':type})
 		
 
+def listitems(request):
+	#user = request.user
+	c=clinic
+	h=hospital
+	l=lab
+	user =1
+	clin = c.objects.all().filter(owner_id=1)
+	hos = h.objects.all().filter(owner_id=1)
+	labs = l.objects.all().filter(owner_id=1)
+	q2 = labAnalysis
+	#lab_anal_q = q2.objects.all().filter(labId=labs)
+	return render(request,'appClinic/list_adds_business.html',{'hospitals':hos,'labs':labs,'clinics':clin})
+
+def edititem(request):
+	type = request.GET['type']
+	item_id = request.GET['id']
+	if type=='clinic':
+		q = clinic
+		query = q.objects.all().get(id=item_id)
+	elif type=='hospital':
+		q = hospital
+		query = q.objects.all().get(id=item_id)
+	else:
+		q = lab
+		q2 = labAnalysis
+		query = q.objects.all().get(id=item_id)
+		lab_anal_q = q2.objects.all().filter(labId_id=item_id)
+		return render(request,'appClinic/edititem.html',{'result':query,'type':type,'lab':lab_anal_q})
+	return render(request,'appClinic/edititem.html',{'result':query,'type':type})
+
+def update(request):
+	type = request.GET['type']
+	if type=='hospital':
+		form = request.POST
+		h=hospital.objects.all().get(id=form['id'])
+		h.name = form['name']
+		h.logo = form['logo']
+		h.wtt = form['wtt']
+		h.wtf = form['wtf']
+		h.country = form['country']
+		h.city = form['city']
+		h.region = form['region']
+		h.notes = form['notes']
+		h.phone = form['phone']
+		h.save()
+		return HttpResponse('done')
+	elif type=='clinic':
+		form = request.POST
+		h=clinic.objects.all().get(id=form['id'])
+		h.name = form['name']
+		h.logo = form['logo']
+		h.wtt = form['wtt']
+		h.wtf = form['wtf']
+		h.country = form['country']
+		h.city = form['city']
+		h.region = form['region']
+		h.notes = form['notes']
+		h.phone = form['phone']
+		h.dname = form['dname']
+		h.dQlfy = form['dQlfy']
+		h.cSpec = form['cSpec']
+		h.price = form['price']
+		h.save()
+		return HttpResponse('done')
+	else:
+		form = request.POST
+		h=lab.objects.all().get(id=form['id'])
+		h.name = form['name']
+		h.logo = form['logo']
+		h.wtt = form['wtt']
+		h.wtf = form['wtf']
+		h.country = form['country']
+		h.city = form['city']
+		h.region = form['region']
+		h.notes = form['notes']
+		h.phone = form['phone']
+		h.save()
+		return HttpResponse('done')
+
+def update_anal(request):
+	rid = request.GET['id']
+	labobj = labAnalysis.objects.all().get(id=rid)
+	if request.method == 'POST':
+		labobj.type = request.POST['type']
+		labobj.price = request.POST['price']
+		labobj.save()
+		return HttpResponse('/done')
+	else:
+		return render(request,'appClinic/editlabanal.html',{'lobj':labobj})
+
+def delitem(request):
+	type = request.GET['type']
+	itemid = request.GET['id']
+	if type=='clinic':
+		clinic.objects.all().get(id=itemid).delete()
+		return HttpResponse('/del')
+	elif type=='hospital':
+		hospital.objects.all().get(id=itemid).delete()
+		return HttpResponse('/del')
+	else:
+		la = lab.objects.all().get(id=itemid)
+		labAnalysis.objects.all().filter(labId=la).delete()
+		la.delete()
+		return HttpResponse('/del')
+
+def del_anal(request):
+	analid = request.GET['id']
+	labAnalysis.objects.all().get(id=analid).delete()
+	return HttpResponse('/del')

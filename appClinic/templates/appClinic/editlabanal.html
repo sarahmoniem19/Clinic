@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edit analysis</title>
+</head>
+<body>
+    <form action="/appClinic/update_anal/?id={{lobj.id}}" method="post">
+         {%	csrf_token %}
+        analysis type : <input type="text" value="{{lobj.type}}" name="type" />
+        analysis price : <input type="text" value="{{lobj.price}}" name="price" />
+        <input type="submit" value="save">
+    </form>
+</body>
+</html>
