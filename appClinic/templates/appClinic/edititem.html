@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edit item</title>
+</head>
+<body>
+{% if type == "clinic" %}
+       <form action="/appClinic/update/?type=clinic" method="post">
+    {%	csrf_token %}
+           <input type="hidden" name="id" value="{{result.id}}">
+     name : <input type="text" value="{{result.name}}" name="name">
+	logo    : <input type="text" value="{{result.logo}}" name="logo">
+	wtf   	: <input type="text" value="{{result.wtf}}" name="wtf">
+	wtt   	: <input type="text" value="{{result.wtt}}" name="wtt">
+	country : <input type="text" value="{{result.country}}" name="country">
+	city 	: <input type="text" value="{{result.city}}" name="city">
+	region 	: <input type="text" value="{{result.region}}" name="region">
+	notes	: <input type="text" value="{{result.notes}}" name="notes">
+	phone	: <input type="text" value="{{result.phone}}" name="phone">
+           dname 	: <input type="text" value="{{result.dname}}" name="dname">
+        dQlfy 	: <input type="text" value="{{result.dQlfy}}" name="dQlfy">
+        cSpec 	: <input type="text" value="{{result.cSpec}}" name="cSpec">
+        price 	: <input type="text" value="{{result.price}}" name="price">
+  <input type="submit" value="save">
+    </form>
+{% elif type == "lab" %}
+
+     <form action="/appClinic/update/?type=lab" method="post">
+    {%	csrf_token %}
+           <input type="hidden" name="id" value="{{result.id}}">
+     name : <input type="text" value="{{result.name}}" name="name">
+	logo    :<input type="text" value="{{result.logo}}" name="logo">
+	wtf   	: <input type="text" value="{{result.wtf}}" name="wtf">
+	wtt   	: <input type="text" value="{{result.wtt}}" name="wtt">
+	country : <input type="text" value="{{result.country}}" name="country">
+	city 	: <input type="text" value="{{result.city}}" name="city">
+	region 	: <input type="text" value="{{result.region}}" name="region">
+	notes	: <input type="text" value="{{result.notes}}" name="notes">
+	phone	: <input type="text" value="{{result.phone}}" name="phone">
+  <input type="submit" value="save">
+    </form>
+
+         {% for analysis in lab %}
+
+            analysis name : <a href="/appClinic/update_anal/?id={{analysis.id}}" ><label>{{analysis.type}}</label></a>
+        <a href="/appClinic/del_anal/?id={{analysis.id}}" ><button>del</button></a>
+        {% endfor %}
+
+{%else %}
+    <form action="/appClinic/update/?type=hospital" method="post">
+    {%	csrf_token %}
+          <input type="hidden" name="id" value="{{result.id}}">
+     name : <input type="text" value="{{result.name}}" name="name">
+	logo    : <input type="text" value="{{result.logo}}" name="logo">
+	wtf   	: <input type="text" value="{{result.wtf}}" name="wtf">
+	wtt   	: <input type="text" value="{{result.wtt}}" name="wtt">
+	country : <input type="text" value="{{result.country}}" name="country">
+	city 	: <input type="text" value="{{result.city}}" name="city">
+	region 	: <input type="text" value="{{result.region}}" name="region">
+	notes	: <input type="text" value="{{result.notes}}" name="notes">
+	phone	: <input type="text" value="{{result.phone}}" name="phone">
+  <input type="submit" value="save">
+    </form>
+{% endif %}
+
+
+ </body>
+ </html>

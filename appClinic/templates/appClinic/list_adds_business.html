@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my list</title>
+</head>
+<body>
+    {% for hospital in hospitals %}
+    <a href="/appClinic/del/?type=hospital&id={{hospital.id}}" ><button>del</button></a>
+        <h3>{{hospital.name}}</h3>
+       <a href="/appClinic/edit_item/?type=hospital&id={{hospital.id}}" ><img src="{{hospital.logo}}" /></a>
+      <p>rank {{hospital.total_ranks}} {{hospital.user_rated}} users</p>
+      {% endfor %}
+
+       {% for clinic in clinics %}
+     <a href="/appClinic/del/?type=clinic&id={{clinic.id}}" ><button>del</button></a>
+        <h3>{{clinic.name}}</h3>
+       <h4>{{clinic.dname}}</h4>
+       <a href="/appClinic/edit_item/?type=clinic&id={{clinic.id}}" ><img src="{{clinic.logo}}" /></a>
+      <p>rank {{clinic.total_ranks}} {{clinic.user_rated}} users</p>
+      {% endfor %}
+
+       {% for lab in labs %}
+     <a href="/appClinic/del/?type=lab&id={{lab.id}}" ><button>del</button></a>
+        <h3>{{lab.name}}</h3>
+      <a href="/appClinic/edit_item/?type=lab&id={{lab.id}}" > <img src="{{lab.logo}}" /></a>
+      <p>rank {{lab.total_ranks}} {{lab.user_rated}} users</p>
+      {% endfor %}
+
+
+
+</body>
+</html>

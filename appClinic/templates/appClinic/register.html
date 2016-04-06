@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+</head>
+<body>
+<form method="post" action="/appClinic/register/">
+    {%	csrf_token %}
+    {{form}}
+    {{form2}}
+    <input type="submit" value="submit"/>
+</form>
+</body>
+</html>
+=======
 {% extends 'appClinic/base.html' %} {% block content %}
 <div class="row row-content">
     <div class="col-sm-8 col-md-8">
@@ -15,3 +32,4 @@
     </div>
 </div>
 {% endblock %}
+>>>>>>> b6845d1722ef25afb9cfd5075a1d55782aa61d44

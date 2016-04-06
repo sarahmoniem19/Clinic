@@ -20,9 +20,15 @@ class myuser (models.Model):
 class property (models.Model):
 	owner	= models.ForeignKey(myuser , on_delete=models.CASCADE)
 	name    = models.CharField(max_length=50)
+
+	logo    = models.ImageField(null=True,blank=True)
+	wtf   	= models.DateTimeField('working time from')
+	wtt   	= models.DateTimeField('workign time to')
+
 	logo    = models.CharField(max_length=50, default='')
 	wtf   	= models.TimeField('working time from')
 	wtt   	= models.TimeField('working time to')
+
 	country = models.CharField(max_length=50)
 	city 	= models.CharField(max_length=50)
 	region 	= models.CharField(max_length=50)
@@ -48,7 +54,7 @@ class hospital (property):
 	pass
 class labAnalysis (models.Model):
 	labId	= models.ForeignKey(lab , on_delete=models.CASCADE)
-	analysistype 	= models.CharField(max_length=100)
+	type 	= models.CharField(max_length=100)
 	price	= models.IntegerField(default=0)
 
 

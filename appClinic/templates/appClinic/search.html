@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="jquery-1.11.2.js"></script>
+</head>
+
+<body>  
+<form action="/appClinic/result/" method="get">
+
+<h3> advanced Search </h3>
+<div id="type">
+  <p>Type</p> 
+  <select name="type" >
+    <option value="Clinics" name="Clinics">Clinics</option>
+    <option value="Labs" name="Labs" >Labs</option>
+    <option value="Hospitals" name="Hospitals" >Hospitals</option>
+  </select> 
+</div>
+=======
+>>>>>>> b6845d1722ef25afb9cfd5075a1d55782aa61d44
 
 {% extends 'appClinic/base.html' %} {% block content %}
 <div class = "row">
@@ -137,11 +158,23 @@
 
 <script>
 $(document).ready(function(){
+<<<<<<< HEAD
+   var x = $("#type select").value();
+});
+ 
+
+
+if(x=='Clinics'){
+  $("#type").hide();
+}
+
+=======
   if ($("#clinic").selected)
   {
       $("#lab_analysis").hide();
   }
 });
+>>>>>>> b6845d1722ef25afb9cfd5075a1d55782aa61d44
 
     /*if(x=='Clinics'){
       $("#type").hide();

@@ -89,6 +89,16 @@ DATABASES = {
 }
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME'  : 'Clinic_db',
+#         'HOST'  : 'localhost',
+#         'USER'  : 'magdy',
+#         'PASSWORD':'iti',
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -129,3 +139,23 @@ USE_TZ = True
 STATIC_URL = '/static/'
 #user authentication
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+
+
+
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'global_media')
+MEDIA_URL = '/media/'
+
+
+LOGIN_REDIRECT_URL = '/djsite'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '399056370226026'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'b96d1d2dc03e2b2c39f119fe61284dbf'
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='459614370912-ulb9srhsfkv6trh50jrpo0l3inkc6s9t.apps.googleusercontent.com'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'eWwHw_worh6bNXZHed210gDo'
+
+SOCIAL_AUTH_TWITTER_KEY = 'Yhuz8JH6kzdh0bPLk0V3QJBaJ'
+SOCIAL_AUTH_TWITTER_SECRET = 'Aqt0xjiKlcSYhrggijEH1nnH6trSSG0xfUWUEbLG4vmbZWbSiW'
+

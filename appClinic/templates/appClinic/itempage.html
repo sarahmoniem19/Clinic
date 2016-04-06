@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>item profile</title>
+</head>
+<body>
+    name : {{result.name}}
+    owner	= {{result.owner}}
+	logo    = {{result.logo}}
+	wtf   	= {{result.wtf}}
+	wtt   	= {{result.wtt}}
+	country = {{result.country}}
+	city 	= {{result.city}}
+	region 	= {{result.region}}
+	notes	= {{result.notes}}
+	phone	= {{result.phone}}
+	total_ranks= {{result.total_ranks}}
+	users_rated= {{result.users_rated}}
+
+    {% if type == "clinic" %}
+        dname 	= {{result.dname}}
+        dQlfy 	= {{result.dQlfy}}
+        cSpec 	= {{result.cSpec}}
+        price 	= {{result.price}}
+    {% elif type == "lab" %}
+        {% for analysis in lab %}
+            analysis name : {{analysis.type}}
+            analysis type : {{analysis.price}}
+        {% endfor %}
+    {% endif %}
+
+</body>
+</html>

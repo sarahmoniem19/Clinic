@@ -42,21 +42,27 @@ class LabForm(ModelForm):
 		# self.fields['wtf'].widget = widgets.AdminSplitDate()
 		# self.fields['wtt'].widget = widgets.AdminSplitDate()
 		
-		
+class hospitalForm(ModelForm):
+	class Meta:
+		model = hospital
+		fields = ['name','logo','wtf','wtt','country','city','region','notes','phone']
+
 		
 class registerForm(ModelForm):
 	class Meta:
 		model = User
 		fields = ['first_name','last_name','username','email','password']
+
 		widgets = {
             'password': forms.PasswordInput(),
         }
 
 
+
 class registerf(ModelForm):
 	class Meta:
 		model = myuser
-		fields = ['dob','gender','country','city','region','accType']
+
 		widgets = {
             'dob': forms.DateInput(attrs={'class':'datepicker'}),
         }
@@ -76,6 +82,7 @@ class HosForm(ModelForm):
 			'wtt': TimeWidget(attrs={'id':"yourdatetimeid"}, usel10n = True, bootstrap_version=3),
 			'wtf': TimeWidget(attrs={'id':"yourdatetimeid"}, usel10n = True, bootstrap_version=3)
 		}
+
 
 
 class CliForm(ModelForm):
