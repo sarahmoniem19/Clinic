@@ -1,31 +1,34 @@
 
+{% extends 'appClinic/base.html' %} {% block content %}
+<div class="row" style="height:80%">
 {% for result in results %}
-		{%if forloop.first%}
-			<table>
-				<tr>
-	    				<td> <a href="/?name={{type}}/?id={{result.id}}/" >{{result.name}}</a> </td>
+    {%if forloop.first%}
+      <table class="table table-striped">
+        <tr>
+              <td> <a href="/?name={{type}}/?id={{result.id}}/" >{{result.name}}</a> </td>
 
-				</tr>
-		{% else %}
-		{%if forloop.last%}
-				<tr>
-	    				<td> <a href="/?name={{type}}/?id={{result.id}}/" >{{result.name}}</a> </td>
+        </tr>
+    {% else %}
+    {%if forloop.last%}
+        <tr>
+              <td> <a href="/?name={{type}}/?id={{result.id}}/" >{{result.name}}</a> </td>
 
-				</tr>
-			</table>
-		{%else%}
-			<tr>
-	    			    <td> <a href="/?name={{type}}/?id={{result.id}}/" >{{result.name}}</a> </td>
+        </tr>
+      </table class="table table-striped">
+    {%else%}
+      <tr>
+                <td> <a href="/?name={{type}}/?id={{result.id}}/" >{{result.name}}</a> </td>
 
-			</tr>
+      </tr>
 
-		{%endif%}
-		{%endif%}
+    {%endif%}
+    {%endif%}
 
-		{% empty %}
-			<p>sorry no data related to your search type</p>
+    {% empty %}
+      <h1 class="text-danger text-center">sorry no data related to your search </h1>
 {%endfor%}
 
 
 
-
+{% endblock %}
+<div>

@@ -1,0 +1,16 @@
+{% extends 'appClinic/base.html' %} {% block content %}
+
+<form class="form-horizontal" style="padding:230 " action="{% url 'app:search' %}">
+	<div>
+    	{% load staticfiles %}
+			<img src="{% static "img2.jpg" %}" alt="My image" width="100%" /> 
+	</div><br>
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for..." name="data">
+        <span class="input-group-btn">
+        <button class="btn btn-default">Go!</button>
+      </span>
+    </div>
+</form>
+
+{% endblock %}

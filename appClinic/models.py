@@ -6,13 +6,13 @@ from django import forms
 from django.contrib.auth.models import User
 
 class myuser (models.Model):
-	user = models.OneToOneField(User, unique=True)
-	dob  	=models.DateField('Date of birth ')
-	gender  =models.CharField(max_length=10)
-	country =models.CharField(max_length=50)
-	city 	=models.CharField(max_length=50)
-	region 	=models.CharField(max_length=50)
-	accType =models.CharField(max_length=1)
+	user    = models.OneToOneField(User, unique=True)
+	dob  	= models.DateField('Date of birth ')
+	gender  = models.CharField(max_length=10)
+	country = models.CharField(max_length=50)
+	city 	= models.CharField(max_length=50)
+	region 	= models.CharField(max_length=50)
+	accType = models.CharField(max_length=1)
 
 
 
@@ -20,9 +20,15 @@ class myuser (models.Model):
 class property (models.Model):
 	owner	= models.ForeignKey(myuser , on_delete=models.CASCADE)
 	name    = models.CharField(max_length=50)
+
 	logo    = models.ImageField(null=True,blank=True)
 	wtf   	= models.DateTimeField('working time from')
 	wtt   	= models.DateTimeField('workign time to')
+
+	logo    = models.CharField(max_length=50, default='')
+	wtf   	= models.TimeField('working time from')
+	wtt   	= models.TimeField('working time to')
+
 	country = models.CharField(max_length=50)
 	city 	= models.CharField(max_length=50)
 	region 	= models.CharField(max_length=50)
@@ -30,6 +36,7 @@ class property (models.Model):
 	phone	= models.CharField(max_length=50)
 	total_ranks=models.IntegerField(default=0)
 	users_rated=models.IntegerField(default=0)
+	level 	= models.CharField(max_length=50, default='')
 
 	class Meta:
 		abstract=True

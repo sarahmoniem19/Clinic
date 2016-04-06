@@ -1,27 +1,116 @@
 {% load staticfiles %}
 <html>
-    <head>
-        <title>Cli-Lab_Hos</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-        <!-- <link rel="stylesheet" href="{% static 'css/appClinic.css' %}"> -->
-    </head>
-   <body>
-    <div class="page-header">
-        <h3><a href="/">Welcome To Cli-Lab_Hos Application</a></h3>
-    </div>
-    <div class="content container">
-        <div class="row">
-            <div class="col-md-8">
-            {% block content %}
-            {% endblock %}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clinic</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/mystyles.css' %}">
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'imgs/favm.png' %}"/>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+{{ form.media }}
+83f25c1c50a980236a3a5101c8612c591d08091a
+</head>
+
+
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/appClinic/">The Clinic</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="/appClinic/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
+                    </li>
+                    <!-- Menu for Logged User  -->
+                    <li>
+                        <a href="/appClinic/search/"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</a>
+                    </li>
+                    <li>
+                        <a href=""><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> My Listing </a>
+                    </li>
+                    <li>
+                        <a href=""><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> My Balance</a>
+                        </li>
+                        <li>
+                        <a href=""><span class="glyphicon glyphicon-bell" aria-hidden="true"></span> My Notifiers</a>
+                        </li>
+                        <li>
+                        <a href="/appClinic/addLap"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add new Item </a>
+                        </li>
+                        <li>
+                        <a href=""><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Setting </a>
+                        </li>
+                        <li>
+                        <a href=""><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout </a>
+                        </li>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/appClinic/login">
+                            <span class="glyphicon glyphicon-log-in"></span> Login</a>
+                    </li>
+                </ul>
+
             </div>
         </div>
+    </nav>
+    <div class="container">
+        {% block content %} {% endblock %}
     </div>
 
-     <div class="page-footer">
-        <h3><a href="#">Made By ITIans</a></h3>
-    </div>
+    <footer>
+        <div class="container row-footer">
+            <div class="row ">
+                <div class="col-xs-12 col-sm-4">
+                    <div class="nav navbar-nav" style="padding: 10px 10px;">
+                       
+                    </div>
+
+                </div>
+                <div class="col-xs-12">
+                <!-- <p>&copy; 2015 RapidTables.com<p> -->
+                    <p style="padding:10px;" class="text-center">&copy; Copy Rigth Reserved to Clinic</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+   <script>
+  $(function() {
+    $( ".datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "1900:2012",
+      // You can put more options here.
+
+    });
+  });
+  </script>
 </body>
+
 </html>
+

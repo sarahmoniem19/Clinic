@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 # my.cnf
 [client]
 database = 'clinic'
 user = 'root'
 password = ''
+=======
+[client]
+database ='Clinic_db'
+user ='magdy'
+password='iti'
+>>>>>>> b6845d1722ef25afb9cfd5075a1d55782aa61d44
 default-character-set = utf8

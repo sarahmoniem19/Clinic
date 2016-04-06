@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,3 +14,22 @@
 </form>
 </body>
 </html>
+=======
+{% extends 'appClinic/base.html' %} {% block content %}
+<div class="row row-content">
+    <div class="col-sm-8 col-md-8">
+        <h2 class="text-primary text-center"> Register </h2>
+
+        <form action="/appClinic/register/" method="post" >
+            {% csrf_token %} {% load bootstrap %} {{ form|bootstrap }}
+            {{ form2|bootstrap }}
+            <div class="form-group">
+                <div class="col-sm-offset-6 col-sm-5">
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+>>>>>>> b6845d1722ef25afb9cfd5075a1d55782aa61d44
