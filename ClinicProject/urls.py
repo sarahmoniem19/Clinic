@@ -19,4 +19,5 @@ from django.conf.urls import include, url
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^appClinic/', include('appClinic.urls', namespace='app')),
+    url('', include('django.contrib.auth.urls', namespace='auth')),
 ]

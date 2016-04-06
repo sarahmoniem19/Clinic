@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'material',
     'bootstrapform',
     'datetimewidget',
+    'social.apps.django_app.default',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -52,7 +53,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware', 
+    'django.middleware.locale.LocaleMiddleware',
+
 ]
 
 ROOT_URLCONF = 'ClinicProject.urls'
@@ -73,22 +75,53 @@ TEMPLATES = [
     },
 ]
 
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+   'django.contrib.auth.context_processors.auth',
+   'django.core.context_processors.debug',
+   'django.core.context_processors.i18n',
+   'django.core.context_processors.media',
+   'django.core.context_processors.static',
+   'django.core.context_processors.tz',
+   'django.contrib.messages.context_processors.messages',
+   'social.apps.django_app.context_processors.backends',
+   'social.apps.django_app.context_processors.login_redirect',
+)
+
+AUTHENTICATION_BACKENDS = (
+   'social.backends.facebook.FacebookOAuth2',
+   'social.backends.google.GoogleOAuth2',
+   'social.backends.twitter.TwitterOAuth',
+   'django.contrib.auth.backends.ModelBackend',
+)
+
+
+
+
 WSGI_APPLICATION = 'ClinicProject.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'OPTIONS': {
+#             'read_default_file': 'ClinicProject/db.cnf',
+#         },
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': 'ClinicProject/db.cnf',
-        },
+        'NAME'  : 'Clinic_db',
+        'HOST'  : 'localhost',
+        'USER'  : 'magdy',
+        'PASSWORD':'iti',
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -129,3 +162,17 @@ USE_TZ = True
 STATIC_URL = '/static/'
 #user authentication
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+
+
+LOGIN_REDIRECT_URL = '/djsite'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '399056370226026'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'b96d1d2dc03e2b2c39f119fe61284dbf'
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='459614370912-ulb9srhsfkv6trh50jrpo0l3inkc6s9t.apps.googleusercontent.com'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'eWwHw_worh6bNXZHed210gDo'
+
+SOCIAL_AUTH_TWITTER_KEY = 'Yhuz8JH6kzdh0bPLk0V3QJBaJ'
+SOCIAL_AUTH_TWITTER_SECRET = 'Aqt0xjiKlcSYhrggijEH1nnH6trSSG0xfUWUEbLG4vmbZWbSiW'
