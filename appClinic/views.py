@@ -227,6 +227,8 @@ def search (request):
 		query_lab = lab.objects.filter (name__icontains = value)
 		query_hospital = hospital.objects.filter (name__icontains = value)
 		return render(request,'appClinic/search.html',{'query_clinic':query_clinic,'query_lab':query_lab,'query_hospital':query_hospital,'result_lab':result_lab,'spec_clinic':spec_clinic,'loc_hospital':loc_hospital,'loc_lab':loc_lab})
+	else:
+		return render(request, 'appClinic/search.html')
 		
 def search_simple(request):
 	return render (request,'appClinic/search_simple.html')

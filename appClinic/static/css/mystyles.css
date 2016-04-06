@@ -11,15 +11,15 @@
 }
 
 .row-footer {
-    background-color: #00b3b3;
+    background-color: #0C3C26;
     margin: 0px auto;
     padding: 20px 0px;
 }
 
 .jumbotron {
-    padding: 70px 30px 70px 30px;
+    padding: 20px 0px ;
     margin: 0px auto;
-    background: #7986CB;
+    background: #fff;
     color: floralwhite;
 }
 
@@ -35,14 +35,14 @@ body {
 }
 
 .navbar-inverse {
-    background: #00b3b3;
+    background: #0C3C26;
 }
 
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
     color: #fff;
-    background: #00e6e6;
+    background: #0C3C26;
 }
 
 .navbar-inverse .navbar-nav > .open > a,
@@ -51,6 +51,10 @@ body {
     color: #fff;
     background: #1A237E;
 }
+.navbar-inverse .navbar-nav > li > a{
+    color: #fff;
+}
+
 
 .navbar-inverse .navbar-nav .open .dropdown-menu> li> a,
 .navbar-inverse .navbar-nav .open .dropdown-menu {
@@ -97,4 +101,9 @@ select::-ms-expand {
     width: 12px;
     border: none;
     background: #fff;
+}
+
+.navbar-brand {
+    color: white;
+    font-style: bold;
 }
