@@ -1,5 +1,0 @@
-[client]
-database ='Clinic_db'
-user ='magdy'
-password='iti'
-default-character-set = utf8
